@@ -3,231 +3,72 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="APPAS Studio Games — Terms of Service for Saps app"/>
   <title>Terms of Service · APPAS Studio Games</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
-    :root {
-      --canvas:  #F8F8F6;
-      --white:   #FFFFFF;
-      --ink:     #111111;
-      --ink2:    #2F2F2F;
-      --muted:   #787774;
-      --border:  #E6E6E4;
-      --radius:  10px;
-      --max-w:   720px;
-    }
+    :root{--canvas:#F8F8F6;--white:#FFFFFF;--ink:#111111;--ink2:#2F2F2F;--muted:#787774;--border:#E6E6E4;--radius:10px;--max-w:720px}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{background:var(--canvas);color:var(--ink);font-family:'DM Sans','Helvetica Neue',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    /* NAV */
+    nav{position:fixed;top:24px;left:50%;transform:translateX(-50%);z-index:100;display:flex;align-items:center;padding:10px 10px 10px 20px;border-radius:100px;background:rgba(248,248,246,.9);border:1px solid var(--border);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);white-space:nowrap;gap:0}
+    .nav-logo{font-family:'Playfair Display',serif;font-size:.8rem;font-weight:700;color:var(--ink);letter-spacing:.04em;margin-right:20px;text-decoration:none}
+    .nav-links{display:flex;align-items:center;gap:2px}
+    .nav-links a{color:var(--muted);text-decoration:none;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;padding:7px 13px;border-radius:100px;font-weight:400;transition:color .25s,background .25s}
+    .nav-links a:hover{color:var(--ink);background:rgba(0,0,0,.05)}
+    .nav-links a.active{color:var(--ink);font-weight:500}
 
-    body {
-      background: var(--canvas);
-      color: var(--ink);
-      font-family: 'DM Sans', 'Helvetica Neue', sans-serif;
-      font-weight: 300;
-      -webkit-font-smoothing: antialiased;
-    }
+    /* LANG SELECTOR */
+    .lang-selector{position:relative;margin-left:6px}
+    .lang-btn-current{display:flex;align-items:center;gap:5px;padding:7px 12px;border-radius:100px;border:1px solid var(--border);background:transparent;color:var(--ink);font-size:.72rem;font-family:'DM Sans',sans-serif;cursor:pointer;font-weight:400;letter-spacing:.04em;transition:background .2s}
+    .lang-btn-current:hover{background:rgba(0,0,0,.05)}
+    .lang-menu{position:absolute;top:calc(100% + 8px);right:0;background:var(--white);border:1px solid var(--border);border-radius:12px;padding:6px;box-shadow:0 4px 24px rgba(0,0,0,.08);display:none;flex-direction:column;min-width:160px;max-height:320px;overflow-y:auto;z-index:200}
+    .lang-menu.open{display:flex}
+    .lang-option{padding:8px 12px;border-radius:7px;border:none;background:transparent;text-align:left;font-size:.8rem;font-family:'DM Sans',sans-serif;color:var(--muted);cursor:pointer;transition:background .15s,color .15s;font-weight:300}
+    .lang-option:hover,.lang-option.active-opt{background:var(--canvas);color:var(--ink);font-weight:400}
 
-    nav {
-      position: fixed;
-      top: 24px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      gap: 0;
-      padding: 10px 6px 10px 20px;
-      border-radius: 100px;
-      background: rgba(248,248,246,0.88);
-      border: 1px solid var(--border);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      white-space: nowrap;
-    }
+    /* PAGE */
+    .page{max-width:var(--max-w);margin:0 auto;padding:120px 40px 100px}
+    .breadcrumb{display:flex;align-items:center;gap:8px;font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:var(--muted);margin-bottom:48px}
+    .breadcrumb a{color:var(--muted);text-decoration:none;transition:color .2s}
+    .breadcrumb a:hover{color:var(--ink)}
+    .breadcrumb span{opacity:.4}
 
-    .nav-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: .8rem;
-      font-weight: 700;
-      color: var(--ink);
-      letter-spacing: .04em;
-      margin-right: 24px;
-      text-decoration: none;
-    }
+    /* DOC */
+    .doc-title{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,5vw,3.5rem);font-weight:900;letter-spacing:-.025em;line-height:1.05;color:var(--ink);margin-bottom:16px}
+    .doc-updated{font-size:.75rem;color:var(--muted);margin-bottom:48px;letter-spacing:.02em}
+    .divider{width:100%;height:1px;background:var(--border);margin-bottom:48px}
+    .doc-section{margin-bottom:36px;padding-bottom:36px;border-bottom:1px solid var(--border)}
+    .doc-section:last-of-type{border-bottom:none}
+    .section-num{font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;font-weight:400}
+    .section-title{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;letter-spacing:-.01em;color:var(--ink);margin-bottom:14px}
+    .section-body{font-size:.88rem;line-height:1.8;color:var(--muted);font-weight:300}
+    .section-body strong{color:var(--ink2);font-weight:400}
+    .section-body a{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+    .sibling-link{display:flex;align-items:center;justify-content:space-between;padding:20px 24px;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);text-decoration:none;margin-top:48px;transition:box-shadow .2s,transform .2s}
+    .sibling-link:hover{box-shadow:0 2px 16px rgba(0,0,0,.055);transform:translateY(-1px)}
+    .sibling-label{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--ink)}
 
-    .nav-links { display: flex; align-items: center; gap: 2px; }
+    /* RTL support */
+    [dir="rtl"] .doc-title,[dir="rtl"] .section-title,[dir="rtl"] .section-body{text-align:right}
+    [dir="rtl"] .breadcrumb{flex-direction:row-reverse}
 
-    .nav-links a {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: .72rem;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      padding: 7px 13px;
-      border-radius: 100px;
-      font-weight: 400;
-      transition: color .25s, background .25s;
-    }
+    /* FOOTER */
+    footer{border-top:1px solid var(--border);padding:22px 40px;display:flex;align-items:center;justify-content:space-between;font-size:.68rem;color:var(--muted);letter-spacing:.04em}
+    footer a{color:var(--muted);text-decoration:none;transition:color .2s}
+    footer a:hover{color:var(--ink)}
+    .footer-links{display:flex;gap:24px}
 
-    .nav-links a:hover { color: var(--ink); background: rgba(0,0,0,.05); }
-    .nav-links a.active { color: var(--ink); font-weight: 500; }
-
-    .page {
-      max-width: var(--max-w);
-      margin: 0 auto;
-      padding: 120px 40px 100px;
-    }
-
-    .lang-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 48px;
-    }
-
-    .breadcrumb {
-      font-size: .65rem;
-      letter-spacing: .25em;
-      text-transform: uppercase;
-      color: var(--muted);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .breadcrumb a { color: var(--muted); text-decoration: none; transition: color .2s; }
-    .breadcrumb a:hover { color: var(--ink); }
-    .breadcrumb span { opacity: .4; }
-
-    .lang-toggle { display: flex; gap: 4px; }
-
-    .lang-btn {
-      font-size: .68rem;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      font-weight: 400;
-      padding: 6px 14px;
-      border-radius: 100px;
-      border: 1px solid var(--border);
-      background: transparent;
-      color: var(--muted);
-      cursor: pointer;
-      font-family: 'DM Sans', sans-serif;
-      transition: all .2s;
-    }
-
-    .lang-btn.active {
-      background: var(--ink);
-      color: var(--white);
-      border-color: var(--ink);
-    }
-
-    .doc-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.4rem, 5vw, 3.5rem);
-      font-weight: 900;
-      letter-spacing: -.025em;
-      line-height: 1.05;
-      color: var(--ink);
-      margin-bottom: 16px;
-    }
-
-    .doc-updated {
-      font-size: .75rem;
-      color: var(--muted);
-      margin-bottom: 48px;
-      letter-spacing: .02em;
-    }
-
-    .divider { width: 100%; height: 1px; background: var(--border); margin-bottom: 48px; }
-
-    .doc-section {
-      margin-bottom: 36px;
-      padding-bottom: 36px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .doc-section:last-child { border-bottom: none; }
-
-    .section-num {
-      font-size: .6rem;
-      letter-spacing: .25em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 8px;
-      font-weight: 400;
-    }
-
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.15rem;
-      font-weight: 700;
-      letter-spacing: -.01em;
-      color: var(--ink);
-      margin-bottom: 14px;
-    }
-
-    .section-body {
-      font-size: .88rem;
-      line-height: 1.8;
-      color: var(--muted);
-      font-weight: 300;
-    }
-
-    .section-body p { margin-bottom: 12px; }
-    .section-body p:last-child { margin-bottom: 0; }
-    .section-body strong { color: var(--ink2); font-weight: 400; }
-    .section-body a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
-
-    .sibling-link {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 20px 24px;
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      text-decoration: none;
-      margin-top: 48px;
-      transition: box-shadow .2s, transform .2s;
-    }
-
-    .sibling-link:hover {
-      box-shadow: 0 2px 16px rgba(0,0,0,.055);
-      transform: translateY(-1px);
-    }
-
-    .sibling-label { font-size: .65rem; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
-    .sibling-name { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--ink); }
-
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 22px 40px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: .68rem;
-      color: var(--muted);
-      letter-spacing: .04em;
-    }
-
-    footer a { color: var(--muted); text-decoration: none; transition: color .2s; }
-    footer a:hover { color: var(--ink); }
-    .footer-links { display: flex; gap: 24px; }
-
-    [data-lang] { display: none; }
-    [data-lang].active { display: block; }
-
-    @media (max-width: 600px) {
-      .page { padding: 100px 20px 80px; }
-      .lang-row { flex-direction: column; align-items: flex-start; gap: 16px; }
-      nav { top: 14px; padding: 8px 6px 8px 14px; }
-      .nav-logo { margin-right: 12px; }
-      footer { padding: 20px; flex-direction: column; gap: 12px; }
+    @media(max-width:600px){
+      .page{padding:100px 20px 80px}
+      nav{top:14px;padding:8px 8px 8px 14px}
+      .nav-logo{margin-right:10px;font-size:.75rem}
+      .nav-links a{padding:5px 8px;font-size:.68rem}
+      footer{padding:20px;flex-direction:column;gap:12px}
+      .lang-menu{right:auto;left:0}
     }
   </style>
 </head>
@@ -240,208 +81,1168 @@
     <a href="privacy.html">Privacy</a>
     <a href="terms.html" class="active">Terms</a>
   </div>
+  <div class="lang-selector">
+  <button class="lang-btn-current" onclick="toggleLangMenu()" id="lang-current">
+    <span id="current-lang-name">English</span>
+    <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 3.5L5 6.5L8 3.5"/></svg>
+  </button>
+  <div class="lang-menu" id="lang-menu">
+    <button onclick="setLang('es')" class="lang-option" data-lang="es">Español</button>
+    <button onclick="setLang('en')" class="lang-option" data-lang="en">English</button>
+    <button onclick="setLang('fr')" class="lang-option" data-lang="fr">Français</button>
+    <button onclick="setLang('de')" class="lang-option" data-lang="de">Deutsch</button>
+    <button onclick="setLang('pt')" class="lang-option" data-lang="pt">Português</button>
+    <button onclick="setLang('id')" class="lang-option" data-lang="id">Bahasa Indonesia</button>
+    <button onclick="setLang('zh')" class="lang-option" data-lang="zh">中文</button>
+    <button onclick="setLang('hi')" class="lang-option" data-lang="hi">हिन्दी</button>
+    <button onclick="setLang('ar')" class="lang-option" data-lang="ar">العربية</button>
+    <button onclick="setLang('ja')" class="lang-option" data-lang="ja">日本語</button>
+    <button onclick="setLang('ko')" class="lang-option" data-lang="ko">한국어</button>
+    <button onclick="setLang('tr')" class="lang-option" data-lang="tr">Türkçe</button>
+    <button onclick="setLang('ru')" class="lang-option" data-lang="ru">Русский</button>
+  </div>
+</div>
 </nav>
 
 <div class="page">
-  <div class="lang-row">
-    <div class="breadcrumb">
-      <a href="index.html">APPAS Studio Games</a>
-      <span>/</span>
-      <span id="bc-label">Términos de Servicio</span>
-    </div>
-    <div class="lang-toggle">
-      <button class="lang-btn active" onclick="setLang('es')" id="btn-es">ES</button>
-      <button class="lang-btn" onclick="setLang('en')" id="btn-en">EN</button>
-    </div>
+  <div class="breadcrumb" id="breadcrumb">
+    <a href="index.html">APPAS Studio Games</a>
+    <span>/</span>
+    <span id="bc-page">Terms of Service</span>
   </div>
 
-  <!-- ── ESPAÑOL ── -->
-  <div data-lang="es" class="active">
-    <h1 class="doc-title">Términos de<br>Servicio</h1>
+  
+  <div data-lang="es" class="lang-content" style="display:none" dir="ltr">
+    <h1 class="doc-title">Términos de Servicio</h1>
     <p class="doc-updated">Última actualización: mayo de 2026 · Saps</p>
     <div class="divider"></div>
-
+    
     <div class="doc-section">
       <p class="section-num">01</p>
       <h2 class="section-title">Aceptación de los términos</h2>
-      <div class="section-body">
-        <p>Al descargar, instalar o usar Saps, aceptas quedar vinculado por estos Términos y nuestra Política de Privacidad. Constituyen un acuerdo legal entre tú y <strong>APPAS Studio Games</strong>.</p>
-      </div>
+      <div class="section-body">Al descargar, instalar o usar la aplicación Saps, aceptas quedar vinculado por estos Términos de Servicio y por nuestra Política de Privacidad. Si no estás de acuerdo con alguno de ellos, no debes usar la aplicación.<br><br>Estos términos constituyen un acuerdo legal entre tú y <strong>APPAS Studio Games</strong>, responsable del desarrollo y operación de Saps.</div>
     </div>
-
     <div class="doc-section">
       <p class="section-num">02</p>
       <h2 class="section-title">Descripción del servicio</h2>
-      <div class="section-body">
-        <p>Saps es una app móvil disponible en Google Play y App Store que ofrece un dato curioso diferente cada día en ciencia, historia, astronomía, biología y más, en 13 idiomas. Los usuarios pueden valorar datos, guardarlos y consultar rankings globales.</p>
-      </div>
+      <div class="section-body">Saps es una aplicación móvil disponible en Google Play Store (Android) y Apple App Store (iOS) que ofrece un dato curioso diferente cada día en áreas como ciencia, historia, etimología, astronomía, biología y otras disciplinas.<br><br>Los usuarios pueden valorar cada dato curioso con un sistema de estrellas, guardarlos en su biblioteca personal y consultar las valoraciones globales de la comunidad. Adicionalmente, es posible acceder al historial completo de datos a través del calendario.</div>
     </div>
-
     <div class="doc-section">
       <p class="section-num">03</p>
-      <h2 class="section-title">Plan gratuito y Plan Pro</h2>
-      <div class="section-body">
-        <p><strong>Plan gratuito —</strong> Acceso al dato del día, valorarlo y guardarlo. El acceso a días anteriores sin valorar requiere ver un anuncio bonificado.</p>
-        <p><strong>Plan Pro · 2,99 € (pago único) —</strong> Acceso completo al historial y sin anuncios bonificados. No es una suscripción — sin renovaciones automáticas. Vinculado a tu cuenta de Google Play o Apple ID y restaurable en cualquier dispositivo.</p>
-        <p><strong>Reembolsos —</strong> Gestionados por Google Play (48h) o Apple (reportaproblem.apple.com). APPAS Studio Games no gestiona reembolsos directamente.</p>
-      </div>
+      <h2 class="section-title">Cuenta de usuario</h2>
+      <div class="section-body">Saps no requiere registro ni creación de cuenta de usuario. El acceso al servicio es anónimo. Los datos de uso (valoraciones, preferencias) se almacenan localmente en tu dispositivo y, en el caso de las valoraciones globales, de forma completamente anónima en nuestros servidores.</div>
     </div>
-
     <div class="doc-section">
       <p class="section-num">04</p>
-      <h2 class="section-title">Anuncios</h2>
-      <div class="section-body">
-        <p>La versión gratuita incluye anuncios bonificados opcionales gestionados por Google AdMob. El Plan Pro elimina la necesidad de verlos. Los anuncios pueden estar personalizados según el identificador publicitario de tu dispositivo, desactivable desde los ajustes.</p>
-      </div>
+      <h2 class="section-title">Plan gratuito y Plan Pro</h2>
+      <div class="section-body"><strong>Plan gratuito</strong><br>Permite acceder al dato curioso del día actual, valorarlo y guardarlo en tu biblioteca personal. El acceso a datos de días anteriores no valorados previamente requiere ver un anuncio bonificado o disponer del Plan Pro.<br><br><strong>Plan Pro · Pago único</strong><br>El Plan Pro se adquiere mediante un pago único de 2,99 € (el precio puede variar según la región y la tienda) y otorga:<br>• Acceso completo e ilimitado al historial del calendario.<br>• Eliminación de los anuncios bonificados para desbloquear contenido.<br><br>El Plan Pro no es una suscripción. No hay renovaciones automáticas ni cargos periódicos. La compra se procesa a través de Google Play (Android) o Apple App Store (iOS), según la plataforma en la que se realice.<br><br><strong>Restauración de compras</strong><br>El Plan Pro queda vinculado a tu cuenta de Google Play o Apple ID. Si desinstalar la app o cambias de dispositivo, el Plan Pro puede restaurarse automáticamente al iniciar la app mientras mantengas la misma cuenta.<br><br><strong>Reembolsos</strong><br>Las compras digitales se rigen por la política de reembolso de Google Play o Apple App Store, según corresponda. En Google Play puedes solicitar reembolso dentro de las 48 horas posteriores a la compra. En Apple, puedes solicitarlo a través de reportaproblem.apple.com. APPAS Studio Games no gestiona directamente los reembolsos; estos son responsabilidad de la tienda correspondiente.</div>
     </div>
-
     <div class="doc-section">
       <p class="section-num">05</p>
-      <h2 class="section-title">Contenido y propuestas</h2>
-      <div class="section-body">
-        <p>Los datos curiosos son revisados y curados por APPAS Studio Games. Nos reservamos el derecho de modificar o eliminar contenidos en cualquier momento.</p>
-        <p>Al enviar una propuesta de dato aceptas que puede ser publicada, adaptada o rechazada sin previo aviso ni compensación, que el contenido es original y verídico, y que no infringe derechos de terceros.</p>
-      </div>
+      <h2 class="section-title">Anuncios</h2>
+      <div class="section-body">La versión gratuita incluye anuncios bonificados gestionados por Google AdMob. Estos anuncios son opcionales: el usuario decide si verlos a cambio de desbloquear el contenido de un día específico del calendario. El Plan Pro elimina la necesidad de ver anuncios para acceder al contenido.<br><br>Los anuncios mostrados pueden estar personalizados en función del identificador publicitario de tu dispositivo. Puedes desactivar los anuncios personalizados desde los ajustes de tu dispositivo.</div>
     </div>
-
     <div class="doc-section">
       <p class="section-num">06</p>
-      <h2 class="section-title">Propiedad intelectual</h2>
-      <div class="section-body">
-        <p>Todos los derechos sobre Saps (diseño, código, logotipos, nombre, contenido) pertenecen a APPAS Studio Games. Se concede al usuario una licencia limitada, no exclusiva y revocable para uso personal no comercial.</p>
-      </div>
+      <h2 class="section-title">Contenido de la aplicación</h2>
+      <div class="section-body">Los datos curiosos publicados en Saps son revisados y curados por el equipo de APPAS Studio Games. Nos esforzamos por garantizar su veracidad y calidad, aunque no podemos garantizar la exactitud absoluta de toda la información.<br><br>Nos reservamos el derecho de modificar, añadir o eliminar contenidos en cualquier momento para mantener la calidad y precisión del servicio, sin que ello genere responsabilidad alguna frente al usuario.</div>
     </div>
-
     <div class="doc-section">
       <p class="section-num">07</p>
-      <h2 class="section-title">Conducta del usuario</h2>
-      <div class="section-body">
-        <p>El usuario se compromete a no descompilar la app, usarla para fines ilegales, interferir con sus servidores, manipular el sistema de valoraciones ni usar medios automatizados para acceder al servicio.</p>
-      </div>
+      <h2 class="section-title">Propuestas de usuarios</h2>
+      <div class="section-body">Los usuarios pueden enviar propuestas de datos curiosos a través de la función habilitada en la aplicación. Al enviar una propuesta, el usuario declara y acepta que:<br><br>• La propuesta puede ser publicada, adaptada, modificada o rechazada por APPAS Studio Games sin previo aviso ni obligación de justificación.<br>• No recibirá compensación económica ni de ningún otro tipo por las propuestas publicadas.<br>• El contenido propuesto es original o de dominio público, y no infringe derechos de propiedad intelectual de terceros.<br>• El contenido es verídico, no contiene información falsa, ofensiva, discriminatoria ni con fines publicitarios.<br>• APPAS Studio Games no se responsabiliza del contenido de las propuestas enviadas por los usuarios antes de su revisión.</div>
     </div>
-
     <div class="doc-section">
       <p class="section-num">08</p>
-      <h2 class="section-title">Limitación de responsabilidad</h2>
-      <div class="section-body">
-        <p>Saps se proporciona "tal cual" sin garantías. La responsabilidad total de APPAS Studio Games no superará en ningún caso el importe abonado por el Plan Pro.</p>
-      </div>
+      <h2 class="section-title">Propiedad intelectual</h2>
+      <div class="section-body">Todos los derechos sobre la aplicación Saps, incluyendo su diseño, código fuente, logotipos, nombre y contenido curado, son propiedad de APPAS Studio Games y están protegidos por las leyes de propiedad intelectual aplicables.<br><br>Se concede al usuario una licencia limitada, no exclusiva, no transferible y revocable para usar la aplicación exclusivamente para fines personales y no comerciales.</div>
     </div>
-
     <div class="doc-section">
       <p class="section-num">09</p>
-      <h2 class="section-title">Modificaciones y rescisión</h2>
-      <div class="section-body">
-        <p>Podemos modificar estos términos o suspender el acceso en caso de incumplimiento en cualquier momento. El uso continuado de la app tras los cambios implica su aceptación.</p>
-      </div>
+      <h2 class="section-title">Conducta del usuario</h2>
+      <div class="section-body">El usuario se compromete a no:<br><br>• Intentar acceder, descompilar o modificar el código fuente de la aplicación.<br>• Usar la app para fines ilegales, fraudulentos o contrarios a estos términos.<br>• Interferir, sobrecargar o interrumpir el funcionamiento normal de la aplicación o sus servidores.<br>• Crear cuentas falsas o manipular el sistema de valoraciones.<br>• Usar medios automatizados para acceder al servicio.</div>
     </div>
-
     <div class="doc-section">
       <p class="section-num">10</p>
-      <h2 class="section-title">Ley aplicable y contacto</h2>
-      <div class="section-body">
-        <p>Estos términos se rigen por la legislación española. Las disputas se resolverán ante los tribunales de España. Contacto: <a href="mailto:appas.studiogames@gmail.com">appas.studiogames@gmail.com</a></p>
-      </div>
+      <h2 class="section-title">Disponibilidad del servicio</h2>
+      <div class="section-body">Nos esforzamos por mantener la aplicación disponible en todo momento, pero no garantizamos un funcionamiento ininterrumpido. El servicio puede suspenderse temporalmente por motivos de mantenimiento, actualizaciones o causas ajenas a nuestra voluntad. APPAS Studio Games no será responsable por los daños derivados de interrupciones del servicio.</div>
     </div>
+    <div class="doc-section">
+      <p class="section-num">11</p>
+      <h2 class="section-title">Limitación de responsabilidad</h2>
+      <div class="section-body">En la máxima medida permitida por la ley aplicable:<br><br>• Saps se proporciona "tal cual" y "según disponibilidad", sin garantías de ningún tipo.<br>• APPAS Studio Games no será responsable de daños directos, indirectos, incidentales o consecuentes derivados del uso o la imposibilidad de uso de la aplicación.<br>• La responsabilidad total de APPAS Studio Games frente al usuario no superará en ningún caso el importe abonado por el usuario por el Plan Pro.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">12</p>
+      <h2 class="section-title">Modificaciones del servicio y los términos</h2>
+      <div class="section-body">APPAS Studio Games se reserva el derecho de modificar, suspender o discontinuar la aplicación o cualquiera de sus funciones en cualquier momento, con o sin previo aviso.<br><br>Asimismo, podemos actualizar estos Términos de Servicio en cualquier momento. Los cambios entrarán en vigor en el momento de su publicación en la aplicación. El uso continuado de Saps tras la publicación de los nuevos términos implica su aceptación.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">13</p>
+      <h2 class="section-title">Rescisión</h2>
+      <div class="section-body">APPAS Studio Games se reserva el derecho de suspender o cancelar el acceso a la aplicación en caso de incumplimiento de estos términos, sin perjuicio del ejercicio de las acciones legales que pudieran corresponder.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">14</p>
+      <h2 class="section-title">Ley aplicable y jurisdicción</h2>
+      <div class="section-body">Estos Términos de Servicio se rigen e interpretan de conformidad con la legislación española. Para la resolución de cualquier disputa derivada de estos términos, las partes se someten a la jurisdicción de los juzgados y tribunales de España, sin perjuicio de los derechos que la normativa de consumidores y usuarios de la UE pueda reconocer al usuario.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">15</p>
+      <h2 class="section-title">Contacto</h2>
+      <div class="section-body">Para cualquier consulta sobre estos Términos de Servicio:<br><br>APPAS Studio Games<br>appas.studiogames@gmail.com</div>
+    </div>
+    <a class="sibling-link" href="privacy.html">
+      <div>
+        <p class="sibling-label">Ver Política de Privacidad</p>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--muted)" stroke-width="1.5" stroke-linecap="round"><path d="M3 13L13 3M13 3H6M13 3v7"/></svg>
+      </div>
+    </a>
   </div>
-
-  <!-- ── ENGLISH ── -->
-  <div data-lang="en">
-    <h1 class="doc-title">Terms of<br>Service</h1>
+  <div data-lang="en" class="lang-content" style="display:none" dir="ltr">
+    <h1 class="doc-title">Terms of Service</h1>
     <p class="doc-updated">Last updated: May 2026 · Saps</p>
     <div class="divider"></div>
-
+    
     <div class="doc-section">
       <p class="section-num">01</p>
       <h2 class="section-title">Acceptance of Terms</h2>
-      <div class="section-body">
-        <p>By downloading, installing, or using Saps, you agree to these Terms and our Privacy Policy. They form a legal agreement between you and <strong>APPAS Studio Games</strong>.</p>
-      </div>
+      <div class="section-body">By downloading, installing, or using the Saps app, you agree to be bound by these Terms of Service and our Privacy Policy. If you do not agree with any of them, you must not use the app.<br><br>These terms constitute a legal agreement between you and <strong>APPAS Studio Games</strong>, responsible for the development and operation of Saps.</div>
     </div>
-
     <div class="doc-section">
       <p class="section-num">02</p>
-      <h2 class="section-title">Description of Service</h2>
-      <div class="section-body">
-        <p>Saps is a mobile app on Google Play and App Store that delivers one curious fact per day across science, history, astronomy, biology and more, in 13 languages. Users can rate facts, save them, and view global rankings.</p>
-      </div>
+      <h2 class="section-title">Description of the Service</h2>
+      <div class="section-body">Saps is a mobile app available on Google Play Store (Android) and Apple App Store (iOS) that offers a different curious fact every day in areas such as science, history, etymology, astronomy, biology, and other disciplines.<br><br>Users can rate each fact with a star system, save them to their personal library, and view global community ratings. Additionally, the complete fact history can be accessed through the calendar.</div>
     </div>
-
     <div class="doc-section">
       <p class="section-num">03</p>
-      <h2 class="section-title">Free Plan and Pro Plan</h2>
-      <div class="section-body">
-        <p><strong>Free Plan —</strong> Access to today's fact, rating it, and saving it. Previous unrated days require watching a rewarded ad.</p>
-        <p><strong>Pro Plan · €2.99 (one-time) —</strong> Full calendar history and no rewarded ads. Not a subscription — no automatic renewals. Linked to your Google Play or Apple ID and restorable on any device.</p>
-        <p><strong>Refunds —</strong> Managed by Google Play (48h) or Apple (reportaproblem.apple.com). APPAS Studio Games does not manage refunds directly.</p>
-      </div>
+      <h2 class="section-title">User Account</h2>
+      <div class="section-body">Saps does not require registration or a user account. Access to the service is anonymous. Usage data (ratings, preferences) is stored locally on your device and, for global ratings, completely anonymously on our servers.</div>
     </div>
-
     <div class="doc-section">
       <p class="section-num">04</p>
-      <h2 class="section-title">Advertising</h2>
-      <div class="section-body">
-        <p>The free version includes optional rewarded ads managed by Google AdMob. The Pro Plan eliminates them. Ads may be personalised based on your device's advertising identifier, which can be disabled in device settings.</p>
-      </div>
+      <h2 class="section-title">Free Plan and Pro Plan</h2>
+      <div class="section-body"><strong>Free Plan</strong><br>Allows access to today's curious fact, rating it, and saving it to your personal library. Access to previous days' facts not previously rated requires watching a rewarded ad or having the Pro Plan.<br><br><strong>Pro Plan · One-time Payment</strong><br>The Pro Plan is acquired through a one-time payment of €2.99 (price may vary by region and store) and grants:<br>• Full and unlimited access to the calendar history.<br>• Elimination of rewarded ads to unlock content.<br><br>The Pro Plan is not a subscription. There are no automatic renewals or recurring charges. The purchase is processed through Google Play (Android) or Apple App Store (iOS), depending on the platform.<br><br><strong>Purchase Restoration</strong><br>The Pro Plan is linked to your Google Play or Apple ID account. If you uninstall the app or change devices, the Pro Plan can be automatically restored when launching the app as long as you keep the same account.<br><br><strong>Refunds</strong><br>Digital purchases are governed by the refund policy of Google Play or Apple App Store, as applicable. On Google Play you can request a refund within 48 hours of purchase. On Apple, you can request it through reportaproblem.apple.com. APPAS Studio Games does not directly manage refunds; these are the responsibility of the respective store.</div>
     </div>
-
     <div class="doc-section">
       <p class="section-num">05</p>
-      <h2 class="section-title">Content and Proposals</h2>
-      <div class="section-body">
-        <p>Curious facts are reviewed and curated by APPAS Studio Games. We reserve the right to modify or remove content at any time.</p>
-        <p>By submitting a fact proposal you agree it may be published, adapted, or rejected without notice or compensation, that the content is original and truthful, and that it does not infringe third-party rights.</p>
-      </div>
+      <h2 class="section-title">Advertising</h2>
+      <div class="section-body">The free version includes rewarded ads managed by Google AdMob. These ads are optional: the user decides whether to watch them in exchange for unlocking the content of a specific day in the calendar. The Pro Plan eliminates the need to watch ads to access content.<br><br>Displayed ads may be personalized based on your device's advertising identifier. You can disable personalized ads from your device settings.</div>
     </div>
-
     <div class="doc-section">
       <p class="section-num">06</p>
-      <h2 class="section-title">Intellectual Property</h2>
-      <div class="section-body">
-        <p>All rights to Saps (design, source code, logos, name, content) belong to APPAS Studio Games. Users are granted a limited, non-exclusive, revocable licence for personal non-commercial use.</p>
-      </div>
+      <h2 class="section-title">App Content</h2>
+      <div class="section-body">The curious facts published in Saps are reviewed and curated by the APPAS Studio Games team. We strive to ensure their accuracy and quality, although we cannot guarantee the absolute accuracy of all information.<br><br>We reserve the right to modify, add, or remove content at any time to maintain the quality and accuracy of the service, without incurring any liability to the user.</div>
     </div>
-
     <div class="doc-section">
       <p class="section-num">07</p>
-      <h2 class="section-title">User Conduct</h2>
-      <div class="section-body">
-        <p>You agree not to decompile the app, use it for illegal purposes, interfere with its servers, manipulate the rating system, or use automated means to access the service.</p>
-      </div>
+      <h2 class="section-title">User Proposals</h2>
+      <div class="section-body">Users can submit curious fact proposals through the feature enabled in the app. By submitting a proposal, the user declares and agrees that:<br><br>• The proposal may be published, adapted, modified, or rejected by APPAS Studio Games without prior notice or obligation to justify.<br>• They will receive no financial or other compensation for published proposals.<br>• The proposed content is original or in the public domain and does not infringe third-party intellectual property rights.<br>• The content is truthful and does not contain false, offensive, discriminatory, or promotional content.<br>• APPAS Studio Games is not responsible for the content of proposals submitted by users prior to review.</div>
     </div>
-
     <div class="doc-section">
       <p class="section-num">08</p>
-      <h2 class="section-title">Limitation of Liability</h2>
-      <div class="section-body">
-        <p>Saps is provided "as is" without warranties. APPAS Studio Games' total liability shall not exceed the amount paid for the Pro Plan.</p>
-      </div>
+      <h2 class="section-title">Intellectual Property</h2>
+      <div class="section-body">All rights to the Saps app, including its design, source code, logos, name, and curated content, are the property of APPAS Studio Games and are protected by applicable intellectual property laws.<br><br>The user is granted a limited, non-exclusive, non-transferable, and revocable license to use the app exclusively for personal, non-commercial purposes.</div>
     </div>
-
     <div class="doc-section">
       <p class="section-num">09</p>
-      <h2 class="section-title">Modifications and Termination</h2>
-      <div class="section-body">
-        <p>We may update these terms or suspend access for non-compliance at any time. Continued use of the app after changes implies acceptance.</p>
-      </div>
+      <h2 class="section-title">User Conduct</h2>
+      <div class="section-body">The user agrees not to:<br><br>• Attempt to access, decompile, or modify the app's source code.<br>• Use the app for illegal, fraudulent, or purposes contrary to these terms.<br>• Interfere with, overload, or disrupt the normal operation of the app or its servers.<br>• Create fake accounts or manipulate the rating system.<br>• Use automated means to access the service.</div>
     </div>
-
     <div class="doc-section">
       <p class="section-num">10</p>
-      <h2 class="section-title">Applicable Law and Contact</h2>
-      <div class="section-body">
-        <p>These terms are governed by Spanish law. Disputes will be resolved before the courts of Spain. Contact: <a href="mailto:appas.studiogames@gmail.com">appas.studiogames@gmail.com</a></p>
+      <h2 class="section-title">Service Availability</h2>
+      <div class="section-body">We strive to keep the app available at all times, but we do not guarantee uninterrupted operation. The service may be temporarily suspended due to maintenance, updates, or causes beyond our control. APPAS Studio Games shall not be liable for damages resulting from service interruptions.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">11</p>
+      <h2 class="section-title">Limitation of Liability</h2>
+      <div class="section-body">To the maximum extent permitted by applicable law:<br><br>• Saps is provided "as is" and "as available" without warranties of any kind.<br>• APPAS Studio Games shall not be liable for direct, indirect, incidental, or consequential damages arising from the use or inability to use the app.<br>• APPAS Studio Games' total liability to the user shall in no case exceed the amount paid by the user for the Pro Plan.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">12</p>
+      <h2 class="section-title">Modifications to the Service and Terms</h2>
+      <div class="section-body">APPAS Studio Games reserves the right to modify, suspend, or discontinue the app or any of its features at any time, with or without prior notice.<br><br>We may also update these Terms of Service at any time. Changes will take effect upon their publication in the app. Continued use of Saps after publication of the new terms implies their acceptance.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">13</p>
+      <h2 class="section-title">Termination</h2>
+      <div class="section-body">APPAS Studio Games reserves the right to suspend or cancel access to the app in case of non-compliance with these terms, without prejudice to any legal actions that may apply.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">14</p>
+      <h2 class="section-title">Applicable Law and Jurisdiction</h2>
+      <div class="section-body">These Terms of Service are governed and interpreted in accordance with Spanish law. For the resolution of any dispute arising from these terms, the parties submit to the jurisdiction of the courts and tribunals of Spain, without prejudice to the rights that EU consumer and user regulations may grant the user.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">15</p>
+      <h2 class="section-title">Contact</h2>
+      <div class="section-body">For any inquiries about these Terms of Service:<br><br>APPAS Studio Games<br>appas.studiogames@gmail.com</div>
+    </div>
+    <a class="sibling-link" href="privacy.html">
+      <div>
+        <p class="sibling-label">Privacy Policy</p>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--muted)" stroke-width="1.5" stroke-linecap="round"><path d="M3 13L13 3M13 3H6M13 3v7"/></svg>
       </div>
-    </div>
+    </a>
   </div>
-
-  <a class="sibling-link" href="privacy.html">
-    <div>
-      <p class="sibling-label" id="sibling-label">Also available</p>
-      <p class="sibling-name" id="sibling-name">Privacy Policy →</p>
+  <div data-lang="fr" class="lang-content" style="display:none" dir="ltr">
+    <h1 class="doc-title">Conditions d'utilisation</h1>
+    <p class="doc-updated">Dernière mise à jour : mai 2026 · Saps</p>
+    <div class="divider"></div>
+    
+    <div class="doc-section">
+      <p class="section-num">01</p>
+      <h2 class="section-title">Acceptation des conditions</h2>
+      <div class="section-body">En téléchargeant, installant ou utilisant l'application Saps, vous acceptez d'être lié par ces Conditions d'utilisation et notre Politique de confidentialité. Si vous n'êtes pas d'accord avec l'une d'elles, vous ne devez pas utiliser l'application.<br><br>Ces conditions constituent un accord légal entre vous et <strong>APPAS Studio Games</strong>, responsable du développement et de l'exploitation de Saps.</div>
     </div>
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--muted)" stroke-width="1.5" stroke-linecap="round"><path d="M3 13L13 3M13 3H6M13 3v7"/></svg>
-  </a>
+    <div class="doc-section">
+      <p class="section-num">02</p>
+      <h2 class="section-title">Description du service</h2>
+      <div class="section-body">Saps est une application mobile disponible sur Google Play Store (Android) et Apple App Store (iOS) qui propose chaque jour un fait curieux différent dans des domaines tels que les sciences, l'histoire, l'étymologie, l'astronomie, la biologie et d'autres disciplines.<br><br>Les utilisateurs peuvent noter chaque fait avec un système d'étoiles, les enregistrer dans leur bibliothèque personnelle et consulter les évaluations globales de la communauté. Il est également possible d'accéder à l'historique complet des faits via le calendrier.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">03</p>
+      <h2 class="section-title">Compte utilisateur</h2>
+      <div class="section-body">Saps ne requiert ni inscription ni création de compte utilisateur. L'accès au service est anonyme. Les données d'utilisation (évaluations, préférences) sont stockées localement sur votre appareil et, pour les évaluations globales, de manière totalement anonyme sur nos serveurs.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">04</p>
+      <h2 class="section-title">Formule gratuite et Formule Pro</h2>
+      <div class="section-body"><strong>Formule gratuite</strong><br>Permet d'accéder au fait curieux du jour, de le noter et de le sauvegarder dans votre bibliothèque personnelle. L'accès aux faits des jours précédents non encore notés nécessite de regarder une publicité récompensée ou de disposer de la Formule Pro.<br><br><strong>Formule Pro · Paiement unique</strong><br>La Formule Pro s'acquiert via un paiement unique de 2,99 € (le prix peut varier selon la région et la boutique) et donne accès à :<br>• Un accès complet et illimité à l'historique du calendrier.<br>• La suppression des publicités récompensées pour débloquer le contenu.<br><br>La Formule Pro n'est pas un abonnement. Il n'y a pas de renouvellement automatique ni de frais récurrents. L'achat est traité via Google Play (Android) ou Apple App Store (iOS) selon la plateforme utilisée.<br><br><strong>Restauration des achats</strong><br>La Formule Pro est liée à votre compte Google Play ou Apple ID. Si vous désinstallez l'application ou changez d'appareil, la Formule Pro peut être restaurée automatiquement au lancement de l'application tant que vous conservez le même compte.<br><br><strong>Remboursements</strong><br>Les achats numériques sont régis par la politique de remboursement de Google Play ou Apple App Store selon le cas. Sur Google Play, vous pouvez demander un remboursement dans les 48 heures suivant l'achat. Sur Apple, vous pouvez le demander via reportaproblem.apple.com. APPAS Studio Games ne gère pas directement les remboursements ; ceux-ci sont de la responsabilité de la boutique concernée.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">05</p>
+      <h2 class="section-title">Publicités</h2>
+      <div class="section-body">La version gratuite comprend des publicités récompensées gérées par Google AdMob. Ces publicités sont facultatives : l'utilisateur décide de les regarder en échange du déblocage du contenu d'un jour spécifique du calendrier. La Formule Pro supprime la nécessité de regarder des publicités pour accéder au contenu.<br><br>Les publicités affichées peuvent être personnalisées en fonction de l'identifiant publicitaire de votre appareil. Vous pouvez désactiver les publicités personnalisées dans les paramètres de votre appareil.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">06</p>
+      <h2 class="section-title">Contenu de l'application</h2>
+      <div class="section-body">Les faits curieux publiés dans Saps sont vérifiés et sélectionnés par l'équipe d'APPAS Studio Games. Nous nous efforçons de garantir leur exactitude et leur qualité, bien que nous ne puissions garantir l'exactitude absolue de toutes les informations.<br><br>Nous nous réservons le droit de modifier, ajouter ou supprimer des contenus à tout moment pour maintenir la qualité et la précision du service, sans que cela n'engage notre responsabilité envers l'utilisateur.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">07</p>
+      <h2 class="section-title">Propositions des utilisateurs</h2>
+      <div class="section-body">Les utilisateurs peuvent soumettre des propositions de faits curieux via la fonctionnalité disponible dans l'application. En soumettant une proposition, l'utilisateur déclare et accepte que :<br><br>• La proposition peut être publiée, adaptée, modifiée ou rejetée par APPAS Studio Games sans préavis ni obligation de justification.<br>• Il ne recevra aucune compensation financière ou autre pour les propositions publiées.<br>• Le contenu proposé est original ou dans le domaine public et ne viole pas les droits de propriété intellectuelle de tiers.<br>• Le contenu est véridique et ne contient pas d'informations fausses, offensantes, discriminatoires ou à des fins publicitaires.<br>• APPAS Studio Games n'est pas responsable du contenu des propositions soumises par les utilisateurs avant leur examen.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">08</p>
+      <h2 class="section-title">Propriété intellectuelle</h2>
+      <div class="section-body">Tous les droits sur l'application Saps, y compris sa conception, son code source, ses logos, son nom et son contenu sélectionné, sont la propriété d'APPAS Studio Games et sont protégés par les lois applicables en matière de propriété intellectuelle.<br><br>L'utilisateur bénéficie d'une licence limitée, non exclusive, non transférable et révocable pour utiliser l'application exclusivement à des fins personnelles et non commerciales.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">09</p>
+      <h2 class="section-title">Conduite de l'utilisateur</h2>
+      <div class="section-body">L'utilisateur s'engage à ne pas :<br><br>• Tenter d'accéder, décompiler ou modifier le code source de l'application.<br>• Utiliser l'application à des fins illégales, frauduleuses ou contraires à ces conditions.<br>• Interférer avec, surcharger ou perturber le fonctionnement normal de l'application ou de ses serveurs.<br>• Créer de faux comptes ou manipuler le système d'évaluation.<br>• Utiliser des moyens automatisés pour accéder au service.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">10</p>
+      <h2 class="section-title">Disponibilité du service</h2>
+      <div class="section-body">Nous nous efforçons de maintenir l'application disponible à tout moment, mais nous ne garantissons pas un fonctionnement ininterrompu. Le service peut être temporairement suspendu pour des raisons de maintenance, de mises à jour ou pour des causes indépendantes de notre volonté. APPAS Studio Games ne saurait être tenu responsable des dommages résultant d'interruptions du service.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">11</p>
+      <h2 class="section-title">Limitation de responsabilité</h2>
+      <div class="section-body">Dans la mesure maximale permise par la loi applicable :<br><br>• Saps est fourni "tel quel" et "selon disponibilité", sans garantie d'aucune sorte.<br>• APPAS Studio Games ne saurait être tenu responsable des dommages directs, indirects, accessoires ou consécutifs découlant de l'utilisation ou de l'impossibilité d'utiliser l'application.<br>• La responsabilité totale d'APPAS Studio Games envers l'utilisateur ne dépassera en aucun cas le montant payé par l'utilisateur pour la Formule Pro.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">12</p>
+      <h2 class="section-title">Modifications du service et des conditions</h2>
+      <div class="section-body">APPAS Studio Games se réserve le droit de modifier, suspendre ou interrompre l'application ou l'une de ses fonctionnalités à tout moment, avec ou sans préavis.<br><br>Nous pouvons également mettre à jour ces Conditions d'utilisation à tout moment. Les modifications prendront effet dès leur publication dans l'application. L'utilisation continue de Saps après la publication des nouvelles conditions implique leur acceptation.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">13</p>
+      <h2 class="section-title">Résiliation</h2>
+      <div class="section-body">APPAS Studio Games se réserve le droit de suspendre ou d'annuler l'accès à l'application en cas de non-respect de ces conditions, sans préjudice des actions légales qui pourraient s'appliquer.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">14</p>
+      <h2 class="section-title">Droit applicable et juridiction</h2>
+      <div class="section-body">Ces Conditions d'utilisation sont régies et interprétées conformément au droit espagnol. Pour la résolution de tout litige découlant de ces conditions, les parties se soumettent à la juridiction des tribunaux d'Espagne, sans préjudice des droits que la réglementation européenne sur la protection des consommateurs peut accorder à l'utilisateur.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">15</p>
+      <h2 class="section-title">Contact</h2>
+      <div class="section-body">Pour toute question concernant ces Conditions d'utilisation :<br><br>APPAS Studio Games<br>appas.studiogames@gmail.com</div>
+    </div>
+    <a class="sibling-link" href="privacy.html">
+      <div>
+        <p class="sibling-label">Politique de confidentialité</p>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--muted)" stroke-width="1.5" stroke-linecap="round"><path d="M3 13L13 3M13 3H6M13 3v7"/></svg>
+      </div>
+    </a>
+  </div>
+  <div data-lang="de" class="lang-content" style="display:none" dir="ltr">
+    <h1 class="doc-title">Nutzungsbedingungen</h1>
+    <p class="doc-updated">Letzte Aktualisierung: Mai 2026 · Saps</p>
+    <div class="divider"></div>
+    
+    <div class="doc-section">
+      <p class="section-num">01</p>
+      <h2 class="section-title">Annahme der Bedingungen</h2>
+      <div class="section-body">Durch das Herunterladen, Installieren oder Verwenden der Saps-App erklärst du dich mit diesen Nutzungsbedingungen und unserer Datenschutzrichtlinie einverstanden. Wenn du mit einer dieser Bedingungen nicht einverstanden bist, darfst du die App nicht nutzen.<br><br>Diese Bedingungen stellen eine rechtliche Vereinbarung zwischen dir und <strong>APPAS Studio Games</strong> dar, verantwortlich für die Entwicklung und den Betrieb von Saps.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">02</p>
+      <h2 class="section-title">Beschreibung des Dienstes</h2>
+      <div class="section-body">Saps ist eine mobile App, die im Google Play Store (Android) und Apple App Store (iOS) verfügbar ist und täglich eine andere Wissensanekdote aus Bereichen wie Wissenschaft, Geschichte, Etymologie, Astronomie, Biologie und anderen Disziplinen anbietet.<br><br>Nutzer können jeden Fakt mit einem Sternebewertungssystem bewerten, in ihrer persönlichen Bibliothek speichern und globale Community-Bewertungen einsehen. Darüber hinaus ist der vollständige Fakten-Verlauf über den Kalender zugänglich.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">03</p>
+      <h2 class="section-title">Benutzerkonto</h2>
+      <div class="section-body">Saps erfordert weder eine Registrierung noch die Erstellung eines Benutzerkontos. Der Zugang zum Dienst ist anonym. Nutzungsdaten (Bewertungen, Einstellungen) werden lokal auf deinem Gerät gespeichert und, für globale Bewertungen, vollständig anonym auf unseren Servern.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">04</p>
+      <h2 class="section-title">Kostenloser Plan und Pro-Plan</h2>
+      <div class="section-body"><strong>Kostenloser Plan</strong><br>Ermöglicht den Zugriff auf den heutigen Fakt, dessen Bewertung und Speicherung in deiner persönlichen Bibliothek. Der Zugriff auf Fakten vergangener Tage, die noch nicht bewertet wurden, erfordert das Ansehen einer Bonuswerbung oder den Pro-Plan.<br><br><strong>Pro-Plan · Einmalzahlung</strong><br>Der Pro-Plan wird durch eine einmalige Zahlung von 2,99 € (der Preis kann je nach Region und Store variieren) erworben und gewährt:<br>• Vollständigen und unbegrenzten Zugriff auf den Kalender-Verlauf.<br>• Wegfall der Bonuswerbung zum Freischalten von Inhalten.<br><br>Der Pro-Plan ist kein Abonnement. Es gibt keine automatischen Verlängerungen oder wiederkehrenden Gebühren. Der Kauf wird über Google Play (Android) oder Apple App Store (iOS) je nach Plattform abgewickelt.<br><br><strong>Käufe wiederherstellen</strong><br>Der Pro-Plan ist mit deinem Google Play- oder Apple-ID-Konto verknüpft. Wenn du die App deinstallierst oder das Gerät wechselst, kann der Pro-Plan beim Starten der App automatisch wiederhergestellt werden, solange du dasselbe Konto verwendest.<br><br><strong>Erstattungen</strong><br>Digitale Käufe unterliegen der Erstattungsrichtlinie von Google Play oder Apple App Store. Bei Google Play kannst du innerhalb von 48 Stunden nach dem Kauf eine Erstattung beantragen. Bei Apple kannst du dies über reportaproblem.apple.com tun. APPAS Studio Games verwaltet Erstattungen nicht direkt; diese liegen in der Verantwortung des jeweiligen Stores.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">05</p>
+      <h2 class="section-title">Werbung</h2>
+      <div class="section-body">Die kostenlose Version enthält Bonuswerbung, die von Google AdMob verwaltet wird. Diese Werbung ist optional: Der Nutzer entscheidet, ob er sie ansehen möchte, um den Inhalt eines bestimmten Tages im Kalender freizuschalten. Der Pro-Plan macht das Ansehen von Werbung zum Zugriff auf Inhalte überflüssig.<br><br>Angezeigte Werbung kann basierend auf der Werbe-ID deines Geräts personalisiert sein. Du kannst personalisierte Werbung in den Einstellungen deines Geräts deaktivieren.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">06</p>
+      <h2 class="section-title">App-Inhalte</h2>
+      <div class="section-body">Die in Saps veröffentlichten Fakten werden vom APPAS Studio Games-Team überprüft und kuratiert. Wir bemühen uns, ihre Richtigkeit und Qualität zu gewährleisten, können jedoch die absolute Genauigkeit aller Informationen nicht garantieren.<br><br>Wir behalten uns das Recht vor, Inhalte jederzeit zu ändern, hinzuzufügen oder zu entfernen, um die Qualität und Genauigkeit des Dienstes aufrechtzuerhalten, ohne dass dies eine Haftung gegenüber dem Nutzer begründet.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">07</p>
+      <h2 class="section-title">Nutzervorschläge</h2>
+      <div class="section-body">Nutzer können Faktenvorschläge über die in der App aktivierte Funktion einreichen. Mit dem Einreichen eines Vorschlags erklärt der Nutzer und stimmt zu, dass:<br><br>• Der Vorschlag von APPAS Studio Games ohne vorherige Ankündigung oder Begründungspflicht veröffentlicht, angepasst, geändert oder abgelehnt werden kann.<br>• Er für veröffentlichte Vorschläge keine finanzielle oder sonstige Vergütung erhält.<br>• Der vorgeschlagene Inhalt original oder gemeinfrei ist und keine Rechte Dritter verletzt.<br>• Der Inhalt wahrheitsgemäß ist und keine falschen, anstößigen, diskriminierenden oder werblichen Inhalte enthält.<br>• APPAS Studio Games nicht für den Inhalt von Vorschlägen verantwortlich ist, die von Nutzern vor der Überprüfung eingereicht wurden.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">08</p>
+      <h2 class="section-title">Geistiges Eigentum</h2>
+      <div class="section-body">Alle Rechte an der Saps-App, einschließlich Design, Quellcode, Logos, Name und kuratierter Inhalt, sind Eigentum von APPAS Studio Games und durch geltende Gesetze zum geistigen Eigentum geschützt.<br><br>Dem Nutzer wird eine eingeschränkte, nicht-exklusive, nicht übertragbare und widerrufliche Lizenz zur ausschließlich persönlichen und nicht-kommerziellen Nutzung der App gewährt.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">09</p>
+      <h2 class="section-title">Nutzerverhalten</h2>
+      <div class="section-body">Der Nutzer verpflichtet sich, nicht:<br><br>• Den Quellcode der App zu versuchen aufzurufen, zu dekompilieren oder zu modifizieren.<br>• Die App für illegale, betrügerische oder diesen Bedingungen widersprechende Zwecke zu verwenden.<br>• Den normalen Betrieb der App oder ihrer Server zu stören, zu überlasten oder zu unterbrechen.<br>• Fake-Konten zu erstellen oder das Bewertungssystem zu manipulieren.<br>• Automatisierte Mittel für den Zugriff auf den Dienst zu verwenden.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">10</p>
+      <h2 class="section-title">Dienstverfügbarkeit</h2>
+      <div class="section-body">Wir bemühen uns, die App jederzeit verfügbar zu halten, garantieren jedoch keinen ununterbrochenen Betrieb. Der Dienst kann aufgrund von Wartung, Updates oder von uns nicht kontrollierbaren Ursachen vorübergehend unterbrochen werden. APPAS Studio Games haftet nicht für Schäden, die durch Dienstunterbrechungen entstehen.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">11</p>
+      <h2 class="section-title">Haftungsbeschränkung</h2>
+      <div class="section-body">Im größtmöglichen gesetzlich zulässigen Umfang:<br><br>• Saps wird "wie besehen" und "nach Verfügbarkeit" ohne jegliche Garantien bereitgestellt.<br>• APPAS Studio Games haftet nicht für direkte, indirekte, zufällige oder Folgeschäden, die sich aus der Nutzung oder Unmöglichkeit der Nutzung der App ergeben.<br>• Die Gesamthaftung von APPAS Studio Games gegenüber dem Nutzer übersteigt in keinem Fall den vom Nutzer für den Pro-Plan gezahlten Betrag.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">12</p>
+      <h2 class="section-title">Änderungen des Dienstes und der Bedingungen</h2>
+      <div class="section-body">APPAS Studio Games behält sich das Recht vor, die App oder ihre Funktionen jederzeit mit oder ohne vorherige Ankündigung zu ändern, auszusetzen oder einzustellen.<br><br>Wir können diese Nutzungsbedingungen ebenfalls jederzeit aktualisieren. Änderungen treten bei ihrer Veröffentlichung in der App in Kraft. Die weitere Nutzung von Saps nach Veröffentlichung der neuen Bedingungen gilt als Zustimmung.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">13</p>
+      <h2 class="section-title">Kündigung</h2>
+      <div class="section-body">APPAS Studio Games behält sich das Recht vor, den Zugang zur App bei Nichteinhaltung dieser Bedingungen auszusetzen oder zu kündigen, unbeschadet etwaiger rechtlicher Schritte.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">14</p>
+      <h2 class="section-title">Anwendbares Recht und Gerichtsbarkeit</h2>
+      <div class="section-body">Diese Nutzungsbedingungen unterliegen dem spanischen Recht und werden in Übereinstimmung damit ausgelegt. Für die Beilegung von Streitigkeiten aus diesen Bedingungen unterwerfen sich die Parteien der Zuständigkeit der spanischen Gerichte, unbeschadet der Rechte, die dem Nutzer durch EU-Verbrauchervorschriften eingeräumt werden können.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">15</p>
+      <h2 class="section-title">Kontakt</h2>
+      <div class="section-body">Bei Fragen zu diesen Nutzungsbedingungen:<br><br>APPAS Studio Games<br>appas.studiogames@gmail.com</div>
+    </div>
+    <a class="sibling-link" href="privacy.html">
+      <div>
+        <p class="sibling-label">Datenschutzrichtlinie</p>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--muted)" stroke-width="1.5" stroke-linecap="round"><path d="M3 13L13 3M13 3H6M13 3v7"/></svg>
+      </div>
+    </a>
+  </div>
+  <div data-lang="pt" class="lang-content" style="display:none" dir="ltr">
+    <h1 class="doc-title">Termos de Serviço</h1>
+    <p class="doc-updated">Última atualização: maio de 2026 · Saps</p>
+    <div class="divider"></div>
+    
+    <div class="doc-section">
+      <p class="section-num">01</p>
+      <h2 class="section-title">Aceitação dos termos</h2>
+      <div class="section-body">Ao descarregar, instalar ou usar a aplicação Saps, concordas em ficar vinculado por estes Termos de Serviço e pela nossa Política de Privacidade. Se não concordares com algum deles, não deves usar a aplicação.<br><br>Estes termos constituem um acordo legal entre ti e a <strong>APPAS Studio Games</strong>, responsável pelo desenvolvimento e operação do Saps.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">02</p>
+      <h2 class="section-title">Descrição do serviço</h2>
+      <div class="section-body">Saps é uma aplicação móvel disponível na Google Play Store (Android) e Apple App Store (iOS) que oferece um facto curioso diferente todos os dias em áreas como ciência, história, etimologia, astronomia, biologia e outras disciplinas.<br><br>Os utilizadores podem classificar cada facto com um sistema de estrelas, guardá-los na sua biblioteca pessoal e consultar as classificações globais da comunidade. Adicionalmente, é possível aceder ao histórico completo de factos através do calendário.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">03</p>
+      <h2 class="section-title">Conta de utilizador</h2>
+      <div class="section-body">O Saps não requer registo nem criação de conta de utilizador. O acesso ao serviço é anónimo. Os dados de utilização (classificações, preferências) são armazenados localmente no teu dispositivo e, no caso das classificações globais, de forma completamente anónima nos nossos servidores.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">04</p>
+      <h2 class="section-title">Plano gratuito e Plano Pro</h2>
+      <div class="section-body"><strong>Plano gratuito</strong><br>Permite aceder ao facto curioso do dia atual, classificá-lo e guardá-lo na tua biblioteca pessoal. O acesso a factos de dias anteriores não classificados previamente requer ver um anúncio recompensado ou ter o Plano Pro.<br><br><strong>Plano Pro · Pagamento único</strong><br>O Plano Pro é adquirido através de um pagamento único de 2,99 € (o preço pode variar conforme a região e a loja) e concede:<br>• Acesso completo e ilimitado ao histórico do calendário.<br>• Eliminação dos anúncios recompensados para desbloquear conteúdo.<br><br>O Plano Pro não é uma subscrição. Não há renovações automáticas nem cobranças periódicas. A compra é processada através da Google Play (Android) ou Apple App Store (iOS), conforme a plataforma.<br><br><strong>Restauração de compras</strong><br>O Plano Pro fica vinculado à tua conta Google Play ou Apple ID. Se desinstalares a app ou mudares de dispositivo, o Plano Pro pode ser restaurado automaticamente ao iniciar a app enquanto mantiveres a mesma conta.<br><br><strong>Reembolsos</strong><br>As compras digitais regem-se pela política de reembolso da Google Play ou Apple App Store, conforme aplicável. Na Google Play podes solicitar reembolso dentro de 48 horas após a compra. Na Apple, podes solicitá-lo através de reportaproblem.apple.com. A APPAS Studio Games não gere diretamente os reembolsos; estes são da responsabilidade da loja correspondente.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">05</p>
+      <h2 class="section-title">Anúncios</h2>
+      <div class="section-body">A versão gratuita inclui anúncios recompensados geridos pelo Google AdMob. Estes anúncios são opcionais: o utilizador decide se os vê em troca de desbloquear o conteúdo de um dia específico do calendário. O Plano Pro elimina a necessidade de ver anúncios para aceder ao conteúdo.<br><br>Os anúncios exibidos podem ser personalizados com base no identificador publicitário do teu dispositivo. Podes desativar os anúncios personalizados nas definições do teu dispositivo.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">06</p>
+      <h2 class="section-title">Conteúdo da aplicação</h2>
+      <div class="section-body">Os factos curiosos publicados no Saps são revistos e curados pela equipa da APPAS Studio Games. Esforçamo-nos por garantir a sua veracidade e qualidade, embora não possamos garantir a precisão absoluta de todas as informações.<br><br>Reservamo-nos o direito de modificar, adicionar ou remover conteúdos a qualquer momento para manter a qualidade e precisão do serviço, sem que isso gere qualquer responsabilidade perante o utilizador.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">07</p>
+      <h2 class="section-title">Propostas de utilizadores</h2>
+      <div class="section-body">Os utilizadores podem enviar propostas de factos curiosos através da funcionalidade disponível na aplicação. Ao enviar uma proposta, o utilizador declara e aceita que:<br><br>• A proposta pode ser publicada, adaptada, modificada ou rejeitada pela APPAS Studio Games sem aviso prévio nem obrigação de justificação.<br>• Não receberá compensação económica nem de qualquer outro tipo pelas propostas publicadas.<br>• O conteúdo proposto é original ou de domínio público, e não infringe direitos de propriedade intelectual de terceiros.<br>• O conteúdo é verídico, não contém informações falsas, ofensivas, discriminatórias nem com fins publicitários.<br>• A APPAS Studio Games não se responsabiliza pelo conteúdo das propostas enviadas pelos utilizadores antes da sua revisão.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">08</p>
+      <h2 class="section-title">Propriedade intelectual</h2>
+      <div class="section-body">Todos os direitos sobre a aplicação Saps, incluindo o seu design, código-fonte, logótipos, nome e conteúdo curado, são propriedade da APPAS Studio Games e estão protegidos pelas leis de propriedade intelectual aplicáveis.<br><br>É concedida ao utilizador uma licença limitada, não exclusiva, não transferível e revogável para usar a aplicação exclusivamente para fins pessoais e não comerciais.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">09</p>
+      <h2 class="section-title">Conduta do utilizador</h2>
+      <div class="section-body">O utilizador compromete-se a não:<br><br>• Tentar aceder, descompilar ou modificar o código-fonte da aplicação.<br>• Usar a app para fins ilegais, fraudulentos ou contrários a estes termos.<br>• Interferir, sobrecarregar ou interromper o funcionamento normal da aplicação ou dos seus servidores.<br>• Criar contas falsas ou manipular o sistema de classificações.<br>• Usar meios automatizados para aceder ao serviço.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">10</p>
+      <h2 class="section-title">Disponibilidade do serviço</h2>
+      <div class="section-body">Esforçamo-nos por manter a aplicação disponível em todos os momentos, mas não garantimos um funcionamento ininterrupto. O serviço pode ser temporariamente suspenso por motivos de manutenção, atualizações ou causas alheias à nossa vontade. A APPAS Studio Games não será responsável pelos danos decorrentes de interrupções do serviço.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">11</p>
+      <h2 class="section-title">Limitação de responsabilidade</h2>
+      <div class="section-body">Na máxima medida permitida pela lei aplicável:<br><br>• O Saps é fornecido "tal como está" e "conforme disponibilidade", sem garantias de qualquer tipo.<br>• A APPAS Studio Games não será responsável por danos diretos, indiretos, incidentais ou consequentes decorrentes do uso ou impossibilidade de uso da aplicação.<br>• A responsabilidade total da APPAS Studio Games perante o utilizador não excederá em nenhum caso o montante pago pelo utilizador pelo Plano Pro.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">12</p>
+      <h2 class="section-title">Modificações do serviço e dos termos</h2>
+      <div class="section-body">A APPAS Studio Games reserva-se o direito de modificar, suspender ou descontinuar a aplicação ou qualquer uma das suas funções a qualquer momento, com ou sem aviso prévio.<br><br>Podemos também atualizar estes Termos de Serviço a qualquer momento. As alterações entrarão em vigor no momento da sua publicação na aplicação. O uso continuado do Saps após a publicação dos novos termos implica a sua aceitação.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">13</p>
+      <h2 class="section-title">Rescisão</h2>
+      <div class="section-body">A APPAS Studio Games reserva-se o direito de suspender ou cancelar o acesso à aplicação em caso de incumprimento destes termos, sem prejuízo do exercício das ações legais que possam corresponder.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">14</p>
+      <h2 class="section-title">Lei aplicável e jurisdição</h2>
+      <div class="section-body">Estes Termos de Serviço regem-se e interpretam-se de acordo com a legislação espanhola. Para a resolução de qualquer disputa decorrente destes termos, as partes submetem-se à jurisdição dos tribunais de Espanha, sem prejuízo dos direitos que a regulamentação de consumidores e utilizadores da UE possa reconhecer ao utilizador.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">15</p>
+      <h2 class="section-title">Contacto</h2>
+      <div class="section-body">Para qualquer consulta sobre estes Termos de Serviço:<br><br>APPAS Studio Games<br>appas.studiogames@gmail.com</div>
+    </div>
+    <a class="sibling-link" href="privacy.html">
+      <div>
+        <p class="sibling-label">Política de Privacidade</p>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--muted)" stroke-width="1.5" stroke-linecap="round"><path d="M3 13L13 3M13 3H6M13 3v7"/></svg>
+      </div>
+    </a>
+  </div>
+  <div data-lang="id" class="lang-content" style="display:none" dir="ltr">
+    <h1 class="doc-title">Ketentuan Layanan</h1>
+    <p class="doc-updated">Terakhir diperbarui: Mei 2026 · Saps</p>
+    <div class="divider"></div>
+    
+    <div class="doc-section">
+      <p class="section-num">01</p>
+      <h2 class="section-title">Penerimaan Ketentuan</h2>
+      <div class="section-body">Dengan mengunduh, menginstal, atau menggunakan aplikasi Saps, kamu setuju untuk terikat oleh Ketentuan Layanan ini dan Kebijakan Privasi kami. Jika kamu tidak setuju dengan salah satunya, kamu tidak boleh menggunakan aplikasi ini.<br><br>Ketentuan ini merupakan perjanjian hukum antara kamu dan <strong>APPAS Studio Games</strong>, yang bertanggung jawab atas pengembangan dan pengoperasian Saps.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">02</p>
+      <h2 class="section-title">Deskripsi Layanan</h2>
+      <div class="section-body">Saps adalah aplikasi mobile yang tersedia di Google Play Store (Android) dan Apple App Store (iOS) yang menawarkan fakta menarik yang berbeda setiap hari di bidang seperti sains, sejarah, etimologi, astronomi, biologi, dan disiplin ilmu lainnya.<br><br>Pengguna dapat menilai setiap fakta dengan sistem bintang, menyimpannya di perpustakaan pribadi mereka, dan melihat penilaian global komunitas. Selain itu, riwayat fakta lengkap dapat diakses melalui kalender.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">03</p>
+      <h2 class="section-title">Akun Pengguna</h2>
+      <div class="section-body">Saps tidak memerlukan pendaftaran atau pembuatan akun pengguna. Akses ke layanan bersifat anonim. Data penggunaan (penilaian, preferensi) disimpan secara lokal di perangkatmu dan, untuk penilaian global, sepenuhnya secara anonim di server kami.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">04</p>
+      <h2 class="section-title">Paket Gratis dan Paket Pro</h2>
+      <div class="section-body"><strong>Paket Gratis</strong><br>Memungkinkan akses ke fakta menarik hari ini, menilainya, dan menyimpannya di perpustakaan pribadi. Akses ke fakta hari-hari sebelumnya yang belum dinilai memerlukan menonton iklan berhadiah atau memiliki Paket Pro.<br><br><strong>Paket Pro · Pembayaran Sekali</strong><br>Paket Pro diperoleh melalui pembayaran sekali sebesar €2,99 (harga dapat bervariasi tergantung wilayah dan toko) dan memberikan:<br>• Akses penuh dan tak terbatas ke riwayat kalender.<br>• Penghapusan iklan berhadiah untuk membuka kunci konten.<br><br>Paket Pro bukan langganan. Tidak ada perpanjangan otomatis atau biaya berulang. Pembelian diproses melalui Google Play (Android) atau Apple App Store (iOS) tergantung platform yang digunakan.<br><br><strong>Pemulihan Pembelian</strong><br>Paket Pro terhubung ke akun Google Play atau Apple ID kamu. Jika kamu menghapus aplikasi atau mengganti perangkat, Paket Pro dapat dipulihkan secara otomatis saat membuka aplikasi selama kamu menggunakan akun yang sama.<br><br><strong>Pengembalian Dana</strong><br>Pembelian digital diatur oleh kebijakan pengembalian dana Google Play atau Apple App Store yang berlaku. Di Google Play kamu dapat meminta pengembalian dana dalam 48 jam setelah pembelian. Di Apple, kamu dapat memintanya melalui reportaproblem.apple.com. APPAS Studio Games tidak mengelola pengembalian dana secara langsung; ini adalah tanggung jawab toko yang bersangkutan.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">05</p>
+      <h2 class="section-title">Iklan</h2>
+      <div class="section-body">Versi gratis menyertakan iklan berhadiah yang dikelola oleh Google AdMob. Iklan ini bersifat opsional: pengguna memutuskan apakah akan menontonnya sebagai imbalan untuk membuka konten hari tertentu di kalender. Paket Pro menghilangkan kebutuhan untuk menonton iklan guna mengakses konten.<br><br>Iklan yang ditampilkan dapat dipersonalisasi berdasarkan pengidentifikasi iklan perangkatmu. Kamu dapat menonaktifkan iklan yang dipersonalisasi dari pengaturan perangkatmu.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">06</p>
+      <h2 class="section-title">Konten Aplikasi</h2>
+      <div class="section-body">Fakta menarik yang diterbitkan di Saps ditinjau dan dikurasi oleh tim APPAS Studio Games. Kami berupaya memastikan keakuratan dan kualitasnya, meskipun kami tidak dapat menjamin keakuratan mutlak semua informasi.<br><br>Kami berhak mengubah, menambah, atau menghapus konten kapan saja untuk menjaga kualitas dan keakuratan layanan, tanpa menimbulkan tanggung jawab apa pun terhadap pengguna.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">07</p>
+      <h2 class="section-title">Usulan Pengguna</h2>
+      <div class="section-body">Pengguna dapat mengirimkan usulan fakta menarik melalui fitur yang tersedia di aplikasi. Dengan mengirimkan usulan, pengguna menyatakan dan menyetujui bahwa:<br><br>• Usulan dapat diterbitkan, diadaptasi, dimodifikasi, atau ditolak oleh APPAS Studio Games tanpa pemberitahuan sebelumnya.<br>• Mereka tidak akan menerima kompensasi finansial atau bentuk lainnya untuk usulan yang diterbitkan.<br>• Konten yang diusulkan bersifat orisinal atau domain publik dan tidak melanggar hak kekayaan intelektual pihak ketiga.<br>• Konten bersifat benar dan tidak mengandung informasi palsu, ofensif, diskriminatif, atau promosi.<br>• APPAS Studio Games tidak bertanggung jawab atas konten usulan yang dikirimkan sebelum ditinjau.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">08</p>
+      <h2 class="section-title">Kekayaan Intelektual</h2>
+      <div class="section-body">Semua hak atas aplikasi Saps, termasuk desain, kode sumber, logo, nama, dan konten yang dikurasi, adalah milik APPAS Studio Games dan dilindungi oleh hukum kekayaan intelektual yang berlaku.<br><br>Pengguna diberikan lisensi terbatas, non-eksklusif, tidak dapat dipindahtangankan, dan dapat dicabut untuk menggunakan aplikasi secara eksklusif untuk keperluan pribadi dan non-komersial.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">09</p>
+      <h2 class="section-title">Perilaku Pengguna</h2>
+      <div class="section-body">Pengguna setuju untuk tidak:<br><br>• Mencoba mengakses, mendekompilasi, atau memodifikasi kode sumber aplikasi.<br>• Menggunakan aplikasi untuk tujuan ilegal, curang, atau bertentangan dengan ketentuan ini.<br>• Mengganggu, membebani, atau mengganggu operasi normal aplikasi atau servernya.<br>• Membuat akun palsu atau memanipulasi sistem penilaian.<br>• Menggunakan cara otomatis untuk mengakses layanan.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">10</p>
+      <h2 class="section-title">Ketersediaan Layanan</h2>
+      <div class="section-body">Kami berupaya menjaga aplikasi tetap tersedia setiap saat, tetapi tidak menjamin operasi yang tidak terganggu. Layanan dapat ditangguhkan sementara karena pemeliharaan, pembaruan, atau penyebab di luar kendali kami. APPAS Studio Games tidak bertanggung jawab atas kerusakan akibat gangguan layanan.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">11</p>
+      <h2 class="section-title">Batasan Tanggung Jawab</h2>
+      <div class="section-body">Sejauh yang diizinkan oleh hukum yang berlaku:<br><br>• Saps disediakan "apa adanya" dan "sesuai ketersediaan" tanpa jaminan apa pun.<br>• APPAS Studio Games tidak bertanggung jawab atas kerusakan langsung, tidak langsung, insidental, atau konsekuensial yang timbul dari penggunaan atau ketidakmampuan menggunakan aplikasi.<br>• Total tanggung jawab APPAS Studio Games kepada pengguna tidak akan melebihi jumlah yang dibayarkan pengguna untuk Paket Pro.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">12</p>
+      <h2 class="section-title">Perubahan Layanan dan Ketentuan</h2>
+      <div class="section-body">APPAS Studio Games berhak mengubah, menangguhkan, atau menghentikan aplikasi atau fitur apa pun kapan saja, dengan atau tanpa pemberitahuan sebelumnya.<br><br>Kami juga dapat memperbarui Ketentuan Layanan ini kapan saja. Perubahan akan berlaku saat diterbitkan di aplikasi. Penggunaan Saps yang berlanjut setelah ketentuan baru diterbitkan berarti penerimaan ketentuan tersebut.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">13</p>
+      <h2 class="section-title">Penghentian</h2>
+      <div class="section-body">APPAS Studio Games berhak menangguhkan atau membatalkan akses ke aplikasi jika terjadi pelanggaran ketentuan ini, tanpa mengurangi tindakan hukum yang mungkin berlaku.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">14</p>
+      <h2 class="section-title">Hukum yang Berlaku dan Yurisdiksi</h2>
+      <div class="section-body">Ketentuan Layanan ini diatur dan ditafsirkan sesuai dengan hukum Spanyol. Untuk penyelesaian sengketa yang timbul dari ketentuan ini, para pihak tunduk pada yurisdiksi pengadilan Spanyol, tanpa mengurangi hak yang mungkin diberikan kepada pengguna oleh peraturan konsumen UE.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">15</p>
+      <h2 class="section-title">Kontak</h2>
+      <div class="section-body">Untuk pertanyaan tentang Ketentuan Layanan ini:<br><br>APPAS Studio Games<br>appas.studiogames@gmail.com</div>
+    </div>
+    <a class="sibling-link" href="privacy.html">
+      <div>
+        <p class="sibling-label">Kebijakan Privasi</p>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--muted)" stroke-width="1.5" stroke-linecap="round"><path d="M3 13L13 3M13 3H6M13 3v7"/></svg>
+      </div>
+    </a>
+  </div>
+  <div data-lang="zh" class="lang-content" style="display:none" dir="ltr">
+    <h1 class="doc-title">服务条款</h1>
+    <p class="doc-updated">最后更新：2026年5月 · Saps</p>
+    <div class="divider"></div>
+    
+    <div class="doc-section">
+      <p class="section-num">01</p>
+      <h2 class="section-title">条款接受</h2>
+      <div class="section-body">下载、安装或使用Saps应用即表示您同意受本服务条款及我们隐私政策的约束。如您不同意其中任何条款，请勿使用本应用。<br><br>本条款构成您与<strong>APPAS Studio Games</strong>（Saps的开发和运营方）之间的法律协议。</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">02</p>
+      <h2 class="section-title">服务说明</h2>
+      <div class="section-body">Saps是一款可在Google Play Store（安卓）和Apple App Store（iOS）下载的移动应用，每天提供来自科学、历史、词源学、天文学、生物学等领域的不同趣味知识。<br><br>用户可用星级系统对每条知识进行评分，将其保存至个人图书馆，并查看社区整体评分。此外，还可通过日历访问完整的历史记录。</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">03</p>
+      <h2 class="section-title">用户账户</h2>
+      <div class="section-body">Saps无需注册或创建用户账户。服务访问完全匿名。使用数据（评分、偏好设置）存储在您的设备本地，全球评分则以完全匿名的方式存储在我们的服务器上。</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">04</p>
+      <h2 class="section-title">免费版与专业版</h2>
+      <div class="section-body"><strong>免费版</strong><br>可访问当天的趣味知识、进行评分并保存至个人图书馆。访问之前未评分的历史内容需观看激励广告或购买专业版。<br><br><strong>专业版 · 一次性付款</strong><br>专业版通过一次性支付€2.99（价格因地区和应用商店而异）获得，享有：<br>• 完整无限制访问日历历史记录。<br>• 无需观看激励广告即可解锁内容。<br><br>专业版不是订阅服务，无自动续费或周期性收费。购买通过Google Play（安卓）或Apple App Store（iOS）处理。<br><br><strong>恢复购买</strong><br>专业版与您的Google Play或Apple ID账户绑定。卸载或更换设备后，只要使用相同账户，可在启动应用时自动恢复。<br><br><strong>退款</strong><br>数字购买受Google Play或Apple App Store退款政策约束。Google Play可在购买后48小时内申请退款；Apple可通过reportaproblem.apple.com申请。APPAS Studio Games不直接处理退款，退款由对应应用商店负责。</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">05</p>
+      <h2 class="section-title">广告</h2>
+      <div class="section-body">免费版包含由Google AdMob管理的激励广告。这些广告为可选项：用户自行决定是否观看以解锁日历中特定日期的内容。专业版无需观看广告即可访问内容。<br><br>显示的广告可能根据您设备的广告标识符进行个性化推送。您可在设备设置中关闭个性化广告。</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">06</p>
+      <h2 class="section-title">应用内容</h2>
+      <div class="section-body">Saps发布的趣味知识均经过APPAS Studio Games团队的审核和筛选。我们力求保证其真实性和质量，但无法保证所有信息的绝对准确性。<br><br>我们保留随时修改、添加或删除内容的权利，以维护服务质量和准确性，此举不对用户产生任何责任。</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">07</p>
+      <h2 class="section-title">用户投稿</h2>
+      <div class="section-body">用户可通过应用内功能提交趣味知识建议。提交建议即表示用户声明并同意：<br><br>• 建议可被APPAS Studio Games发布、改编、修改或拒绝，无需事先通知或说明理由。<br>• 已发布的建议不会获得任何经济或其他形式的报酬。<br>• 所提内容为原创或属于公共领域，不侵犯第三方知识产权。<br>• 内容真实，不含虚假、冒犯性、歧视性或广告性质的信息。<br>• APPAS Studio Games对审核前用户提交的建议内容不承担责任。</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">08</p>
+      <h2 class="section-title">知识产权</h2>
+      <div class="section-body">Saps应用的所有权利，包括设计、源代码、标志、名称和精选内容，均归APPAS Studio Games所有，受适用知识产权法律保护。<br><br>向用户授予有限、非独占、不可转让且可撤销的许可，仅供个人非商业用途使用本应用。</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">09</p>
+      <h2 class="section-title">用户行为</h2>
+      <div class="section-body">用户同意不得：<br><br>• 尝试访问、反编译或修改应用源代码。<br>• 将应用用于违法、欺诈或违反本条款的目的。<br>• 干扰、超载或中断应用或其服务器的正常运行。<br>• 创建虚假账户或操纵评分系统。<br>• 使用自动化手段访问服务。</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">10</p>
+      <h2 class="section-title">服务可用性</h2>
+      <div class="section-body">我们力求随时保持应用可用，但不保证不间断运行。服务可能因维护、更新或不可抗力原因而暂时中断。APPAS Studio Games不对服务中断造成的损失承担责任。</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">11</p>
+      <h2 class="section-title">责任限制</h2>
+      <div class="section-body">在适用法律允许的最大范围内：<br><br>• Saps按"现状"和"可用时"提供，不提供任何形式的保证。<br>• APPAS Studio Games不对因使用或无法使用应用而产生的直接、间接、附带或后果性损害承担责任。<br>• APPAS Studio Games对用户的总责任在任何情况下均不超过用户为专业版支付的金额。</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">12</p>
+      <h2 class="section-title">服务和条款的修改</h2>
+      <div class="section-body">APPAS Studio Games保留随时修改、暂停或终止应用或其任何功能的权利，可提前或不提前通知。<br><br>我们也可随时更新本服务条款。变更自在应用中发布之日起生效。新条款发布后继续使用Saps即表示接受。</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">13</p>
+      <h2 class="section-title">终止</h2>
+      <div class="section-body">APPAS Studio Games保留在违反本条款时暂停或取消应用访问权限的权利，不影响可能适用的法律行动。</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">14</p>
+      <h2 class="section-title">适用法律和管辖权</h2>
+      <div class="section-body">本服务条款受西班牙法律管辖并据此解释。就本条款引起的任何争议，各方服从西班牙法院的管辖，不影响欧盟消费者法规可能赋予用户的权利。</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">15</p>
+      <h2 class="section-title">联系方式</h2>
+      <div class="section-body">如有关于本服务条款的任何疑问：<br><br>APPAS Studio Games<br>appas.studiogames@gmail.com</div>
+    </div>
+    <a class="sibling-link" href="privacy.html">
+      <div>
+        <p class="sibling-label">隐私政策</p>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--muted)" stroke-width="1.5" stroke-linecap="round"><path d="M3 13L13 3M13 3H6M13 3v7"/></svg>
+      </div>
+    </a>
+  </div>
+  <div data-lang="hi" class="lang-content" style="display:none" dir="ltr">
+    <h1 class="doc-title">सेवा की शर्तें</h1>
+    <p class="doc-updated">अंतिम अपडेट: मई 2026 · Saps</p>
+    <div class="divider"></div>
+    
+    <div class="doc-section">
+      <p class="section-num">01</p>
+      <h2 class="section-title">शर्तों की स्वीकृति</h2>
+      <div class="section-body">Saps ऐप को डाउनलोड, इंस्टॉल या उपयोग करके, आप इन सेवा शर्तों और हमारी गोपनीयता नीति से बंधे होने के लिए सहमत हैं। यदि आप किसी से असहमत हैं, तो आपको ऐप का उपयोग नहीं करना चाहिए।<br><br>ये शर्तें आपके और <strong>APPAS Studio Games</strong> के बीच एक कानूनी समझौता बनाती हैं, जो Saps के विकास और संचालन के लिए जिम्मेदार है।</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">02</p>
+      <h2 class="section-title">सेवा का विवरण</h2>
+      <div class="section-body">Saps एक मोबाइल ऐप है जो Google Play Store (Android) और Apple App Store (iOS) पर उपलब्ध है और विज्ञान, इतिहास, व्युत्पत्ति, खगोल विज्ञान, जीव विज्ञान जैसे क्षेत्रों से प्रतिदिन एक अलग रोचक तथ्य प्रदान करती है।<br><br>उपयोगकर्ता प्रत्येक तथ्य को स्टार रेटिंग सिस्टम से रेट कर सकते हैं, इन्हें अपनी व्यक्तिगत लाइब्रेरी में सहेज सकते हैं और समुदाय की वैश्विक रेटिंग देख सकते हैं। इसके अलावा, कैलेंडर के माध्यम से तथ्यों के पूरे इतिहास तक पहुँचा जा सकता है।</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">03</p>
+      <h2 class="section-title">उपयोगकर्ता खाता</h2>
+      <div class="section-body">Saps के लिए पंजीकरण या उपयोगकर्ता खाता बनाने की आवश्यकता नहीं है। सेवा तक पहुँच अज्ञात है। उपयोग डेटा (रेटिंग, प्राथमिकताएं) आपके डिवाइस पर स्थानीय रूप से संग्रहीत हैं और वैश्विक रेटिंग के लिए हमारे सर्वर पर पूरी तरह गुमनाम रूप से।</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">04</p>
+      <h2 class="section-title">निःशुल्क प्लान और Pro प्लान</h2>
+      <div class="section-body"><strong>निःशुल्क प्लान</strong><br>आज के रोचक तथ्य तक पहुँच, इसे रेट करना और अपनी व्यक्तिगत लाइब्रेरी में सहेजना संभव है। पहले से रेट नहीं किए गए पिछले दिनों के तथ्यों तक पहुँचने के लिए एक रिवॉर्डेड विज्ञापन देखना या Pro प्लान होना आवश्यक है।<br><br><strong>Pro प्लान · एकमुश्त भुगतान</strong><br>Pro प्लान €2.99 के एकमुश्त भुगतान (क्षेत्र और स्टोर के अनुसार कीमत भिन्न हो सकती है) से प्राप्त किया जाता है और प्रदान करता है:<br>• कैलेंडर इतिहास तक पूर्ण और असीमित पहुँच।<br>• सामग्री अनलॉक करने के लिए रिवॉर्डेड विज्ञापन हटाना।<br><br>Pro प्लान सदस्यता नहीं है। कोई स्वचालित नवीनीकरण या आवधिक शुल्क नहीं है। खरीद Google Play (Android) या Apple App Store (iOS) के माध्यम से संसाधित होती है।<br><br><strong>खरीद पुनर्स्थापित करें</strong><br>Pro प्लान आपके Google Play या Apple ID खाते से जुड़ा है। ऐप अनइंस्टॉल करने या डिवाइस बदलने पर, जब तक आप वही खाता रखते हैं, ऐप लॉन्च करने पर Pro प्लान स्वचालित रूप से पुनर्स्थापित हो सकता है।<br><br><strong>धनवापसी</strong><br>डिजिटल खरीद Google Play या Apple App Store की धनवापसी नीति द्वारा नियंत्रित होती है। Google Play पर खरीद के 48 घंटों के भीतर अनुरोध किया जा सकता है। Apple पर reportaproblem.apple.com के माध्यम से। APPAS Studio Games सीधे धनवापसी प्रबंधित नहीं करता।</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">05</p>
+      <h2 class="section-title">विज्ञापन</h2>
+      <div class="section-body">निःशुल्क संस्करण में Google AdMob द्वारा प्रबंधित रिवॉर्डेड विज्ञापन शामिल हैं। ये विज्ञापन वैकल्पिक हैं: उपयोगकर्ता तय करता है कि कैलेंडर के किसी विशेष दिन की सामग्री अनलॉक करने के बदले में उन्हें देखना है या नहीं। Pro प्लान सामग्री तक पहुँचने के लिए विज्ञापन देखने की आवश्यकता समाप्त करता है।<br><br>प्रदर्शित विज्ञापन आपके डिवाइस के विज्ञापन पहचानकर्ता के आधार पर वैयक्तिकृत हो सकते हैं। आप अपने डिवाइस सेटिंग से वैयक्तिकृत विज्ञापन अक्षम कर सकते हैं।</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">06</p>
+      <h2 class="section-title">ऐप सामग्री</h2>
+      <div class="section-body">Saps में प्रकाशित रोचक तथ्यों की APPAS Studio Games टीम द्वारा समीक्षा और क्यूरेशन की जाती है। हम उनकी सटीकता और गुणवत्ता सुनिश्चित करने का प्रयास करते हैं, हालाँकि हम सभी जानकारी की पूर्ण सटीकता की गारंटी नहीं दे सकते।<br><br>सेवा की गुणवत्ता और सटीकता बनाए रखने के लिए किसी भी समय सामग्री को संशोधित, जोड़ने या हटाने का अधिकार सुरक्षित रखते हैं।</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">07</p>
+      <h2 class="section-title">उपयोगकर्ता प्रस्ताव</h2>
+      <div class="section-body">उपयोगकर्ता ऐप में सक्षम सुविधा के माध्यम से रोचक तथ्य प्रस्ताव भेज सकते हैं। प्रस्ताव भेजकर उपयोगकर्ता घोषित करता और सहमत होता है कि:<br><br>• प्रस्ताव को APPAS Studio Games द्वारा बिना पूर्व सूचना के प्रकाशित, अनुकूलित, संशोधित या अस्वीकार किया जा सकता है।<br>• प्रकाशित प्रस्तावों के लिए कोई वित्तीय या अन्य मुआवजा नहीं मिलेगा।<br>• प्रस्तावित सामग्री मूल या सार्वजनिक डोमेन है और तृतीय पक्ष के बौद्धिक संपदा अधिकारों का उल्लंघन नहीं करती।<br>• सामग्री सत्य है और इसमें झूठी, आपत्तिजनक, भेदभावपूर्ण या विज्ञापन उद्देश्यों वाली जानकारी नहीं है।<br>• APPAS Studio Games समीक्षा से पहले उपयोगकर्ताओं द्वारा भेजे गए प्रस्तावों की सामग्री के लिए जिम्मेदार नहीं है।</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">08</p>
+      <h2 class="section-title">बौद्धिक संपदा</h2>
+      <div class="section-body">Saps ऐप पर सभी अधिकार, जिसमें डिज़ाइन, सोर्स कोड, लोगो, नाम और क्यूरेटेड सामग्री शामिल हैं, APPAS Studio Games की संपत्ति हैं और लागू बौद्धिक संपदा कानूनों द्वारा संरक्षित हैं।<br><br>उपयोगकर्ता को केवल व्यक्तिगत, गैर-व्यावसायिक उद्देश्यों के लिए ऐप का उपयोग करने के लिए सीमित, गैर-अनन्य, अहस्तांतरणीय और प्रतिसंहरणीय लाइसेंस दिया जाता है।</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">09</p>
+      <h2 class="section-title">उपयोगकर्ता आचरण</h2>
+      <div class="section-body">उपयोगकर्ता निम्नलिखित न करने का वचन देता है:<br><br>• ऐप के सोर्स कोड तक पहुँचने, डीकंपाइल या संशोधित करने का प्रयास।<br>• अवैध, धोखाधड़ी या इन शर्तों के विरुद्ध उद्देश्यों के लिए ऐप का उपयोग।<br>• ऐप या उसके सर्वर के सामान्य संचालन में हस्तक्षेप, अधिभार या बाधा।<br>• नकली खाते बनाना या रेटिंग सिस्टम में हेरफेर।<br>• सेवा तक पहुँचने के लिए स्वचालित साधनों का उपयोग।</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">10</p>
+      <h2 class="section-title">सेवा उपलब्धता</h2>
+      <div class="section-body">हम ऐप को हर समय उपलब्ध रखने का प्रयास करते हैं, लेकिन निर्बाध संचालन की गारंटी नहीं देते। रखरखाव, अपडेट या हमारे नियंत्रण से परे कारणों से सेवा अस्थायी रूप से निलंबित हो सकती है। APPAS Studio Games सेवा बाधाओं से होने वाली क्षति के लिए उत्तरदायी नहीं होगा।</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">11</p>
+      <h2 class="section-title">दायित्व की सीमा</h2>
+      <div class="section-body">लागू कानून द्वारा अनुमत अधिकतम सीमा तक:<br><br>• Saps किसी भी प्रकार की वारंटी के बिना "जैसा है" और "उपलब्धतानुसार" प्रदान किया जाता है।<br>• APPAS Studio Games ऐप के उपयोग या उपयोग की असमर्थता से उत्पन्न प्रत्यक्ष, अप्रत्यक्ष, आकस्मिक या परिणामी नुकसान के लिए उत्तरदायी नहीं होगा।<br>• APPAS Studio Games की उपयोगकर्ता के प्रति कुल देनदारी किसी भी मामले में उपयोगकर्ता द्वारा Pro प्लान के लिए भुगतान की गई राशि से अधिक नहीं होगी।</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">12</p>
+      <h2 class="section-title">सेवा और शर्तों में संशोधन</h2>
+      <div class="section-body">APPAS Studio Games पूर्व सूचना के साथ या बिना किसी भी समय ऐप या उसकी किसी भी सुविधा को संशोधित, निलंबित या बंद करने का अधिकार सुरक्षित रखता है।<br><br>हम इन सेवा शर्तों को भी किसी भी समय अपडेट कर सकते हैं। परिवर्तन ऐप में प्रकाशन के समय से प्रभावी होंगे। नई शर्तें प्रकाशित होने के बाद Saps का उपयोग जारी रखना उन्हें स्वीकार करना है।</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">13</p>
+      <h2 class="section-title">समाप्ति</h2>
+      <div class="section-body">APPAS Studio Games इन शर्तों का उल्लंघन होने पर लागू कानूनी कार्रवाई के अधिकार के बिना ऐप तक पहुँच निलंबित या रद्द करने का अधिकार सुरक्षित रखता है।</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">14</p>
+      <h2 class="section-title">लागू कानून और क्षेत्राधिकार</h2>
+      <div class="section-body">ये सेवा शर्तें स्पेनिश कानून के अनुसार नियंत्रित और व्याख्यायित हैं। इन शर्तों से उत्पन्न किसी भी विवाद के समाधान के लिए, पक्ष स्पेन के न्यायालयों के अधिकार क्षेत्र के अधीन हैं, जो EU उपभोक्ता नियमों द्वारा उपयोगकर्ता को दिए गए अधिकारों के बिना।</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">15</p>
+      <h2 class="section-title">संपर्क</h2>
+      <div class="section-body">इन सेवा शर्तों के बारे में किसी भी पूछताछ के लिए:<br><br>APPAS Studio Games<br>appas.studiogames@gmail.com</div>
+    </div>
+    <a class="sibling-link" href="privacy.html">
+      <div>
+        <p class="sibling-label">गोपनीयता नीति</p>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--muted)" stroke-width="1.5" stroke-linecap="round"><path d="M3 13L13 3M13 3H6M13 3v7"/></svg>
+      </div>
+    </a>
+  </div>
+  <div data-lang="ar" class="lang-content" style="display:none" dir="rtl">
+    <h1 class="doc-title">شروط الخدمة</h1>
+    <p class="doc-updated">آخر تحديث: مايو 2026 · Saps</p>
+    <div class="divider"></div>
+    
+    <div class="doc-section">
+      <p class="section-num">01</p>
+      <h2 class="section-title">قبول الشروط</h2>
+      <div class="section-body">بتنزيل تطبيق Saps أو تثبيته أو استخدامه، فإنك توافق على الالتزام بشروط الخدمة هذه وسياسة الخصوصية الخاصة بنا. إذا كنت لا توافق على أي منهما، فلا يجوز لك استخدام التطبيق.<br><br>تشكّل هذه الشروط اتفاقية قانونية بينك وبين <strong>APPAS Studio Games</strong>، المسؤولة عن تطوير Saps وتشغيله.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">02</p>
+      <h2 class="section-title">وصف الخدمة</h2>
+      <div class="section-body">Saps تطبيق جوّال متاح على Google Play Store (أندرويد) وApple App Store (iOS)، يقدّم معلومة مثيرة مختلفة كل يوم في مجالات العلوم والتاريخ وعلم اشتقاق الكلمات والفلك وعلم الأحياء وغيرها.<br><br>يمكن للمستخدمين تقييم كل معلومة بنظام النجوم، وحفظها في مكتبتهم الشخصية، والاطلاع على التقييمات العالمية للمجتمع. كما يمكن الوصول إلى السجل الكامل للمعلومات عبر التقويم.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">03</p>
+      <h2 class="section-title">حساب المستخدم</h2>
+      <div class="section-body">لا يتطلب Saps تسجيلاً أو إنشاء حساب مستخدم. الوصول إلى الخدمة مجهول. تُخزَّن بيانات الاستخدام (التقييمات، التفضيلات) محلياً على جهازك، وتُخزَّن التقييمات العالمية بشكل مجهول تماماً على خوادمنا.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">04</p>
+      <h2 class="section-title">الخطة المجانية وخطة Pro</h2>
+      <div class="section-body"><strong>الخطة المجانية</strong><br>تتيح الوصول إلى معلومة اليوم وتقييمها وحفظها في مكتبتك الشخصية. يتطلب الوصول إلى معلومات الأيام السابقة غير المُقيَّمة مشاهدة إعلان مكافأة أو امتلاك خطة Pro.<br><br><strong>خطة Pro · دفعة واحدة</strong><br>تُكتسب خطة Pro بدفعة واحدة قدرها 2.99 يورو (قد يختلف السعر حسب المنطقة والمتجر) وتمنح:<br>• وصولاً كاملاً وغير محدود إلى سجل التقويم.<br>• إلغاء إعلانات المكافأة لفتح المحتوى.<br><br>خطة Pro ليست اشتراكاً. لا تجديد تلقائي ولا رسوم دورية. تُعالَج عملية الشراء عبر Google Play (أندرويد) أو Apple App Store (iOS).<br><br><strong>استعادة المشتريات</strong><br>ترتبط خطة Pro بحساب Google Play أو Apple ID الخاص بك. عند إلغاء تثبيت التطبيق أو تغيير الجهاز، يمكن استعادة خطة Pro تلقائياً عند تشغيل التطبيق طالما تحتفظ بنفس الحساب.<br><br><strong>المبالغ المستردة</strong><br>تخضع المشتريات الرقمية لسياسة استرداد Google Play أو Apple App Store. في Google Play يمكن طلب الاسترداد خلال 48 ساعة من الشراء. في Apple عبر reportaproblem.apple.com. لا تدير APPAS Studio Games المبالغ المستردة مباشرة.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">05</p>
+      <h2 class="section-title">الإعلانات</h2>
+      <div class="section-body">تتضمن النسخة المجانية إعلانات مكافأة يديرها Google AdMob. هذه الإعلانات اختيارية: يقرر المستخدم ما إذا كان سيشاهدها مقابل فتح محتوى يوم معين في التقويم. تلغي خطة Pro الحاجة إلى مشاهدة الإعلانات للوصول إلى المحتوى.<br><br>قد تكون الإعلانات المعروضة مخصصة بناءً على معرّف الإعلانات في جهازك. يمكنك تعطيل الإعلانات المخصصة من إعدادات جهازك.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">06</p>
+      <h2 class="section-title">محتوى التطبيق</h2>
+      <div class="section-body">تخضع المعلومات المثيرة المنشورة في Saps للمراجعة والانتقاء من قِبل فريق APPAS Studio Games. نسعى لضمان دقتها وجودتها، غير أننا لا نستطيع ضمان الدقة المطلقة لجميع المعلومات.<br><br>نحتفظ بحق تعديل المحتوى أو إضافته أو حذفه في أي وقت للحفاظ على جودة الخدمة ودقتها.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">07</p>
+      <h2 class="section-title">مقترحات المستخدمين</h2>
+      <div class="section-body">يمكن للمستخدمين إرسال مقترحات معلومات مثيرة عبر الميزة المتاحة في التطبيق. بإرسال مقترح، يُقرّ المستخدم ويوافق على أن:<br><br>• يجوز لـ APPAS Studio Games نشر المقترح أو تكييفه أو تعديله أو رفضه دون إشعار مسبق.<br>• لن يتلقى أي تعويض مالي أو غيره عن المقترحات المنشورة.<br>• المحتوى المقترح أصلي أو من الملك العام ولا ينتهك حقوق الملكية الفكرية لأطراف ثالثة.<br>• المحتوى صادق ولا يتضمن معلومات كاذبة أو مسيئة أو تمييزية أو ذات طابع إعلاني.<br>• لا تتحمل APPAS Studio Games مسؤولية محتوى المقترحات المُرسَلة قبل مراجعتها.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">08</p>
+      <h2 class="section-title">الملكية الفكرية</h2>
+      <div class="section-body">جميع حقوق تطبيق Saps، بما في ذلك التصميم والكود المصدري والشعارات والاسم والمحتوى المنتقى، هي ملك لـ APPAS Studio Games وتحميها قوانين الملكية الفكرية المعمول بها.<br><br>يُمنح المستخدم ترخيصاً محدوداً وغير حصري وغير قابل للتحويل وقابل للإلغاء لاستخدام التطبيق حصرياً لأغراض شخصية وغير تجارية.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">09</p>
+      <h2 class="section-title">سلوك المستخدم</h2>
+      <div class="section-body">يلتزم المستخدم بعدم:<br><br>• محاولة الوصول إلى الكود المصدري للتطبيق أو تحليله أو تعديله.<br>• استخدام التطبيق لأغراض غير قانونية أو احتيالية أو مخالفة لهذه الشروط.<br>• التدخل في التشغيل الطبيعي للتطبيق أو خوادمه أو إثقاله أو تعطيله.<br>• إنشاء حسابات وهمية أو التلاعب بنظام التقييم.<br>• استخدام وسائل آلية للوصول إلى الخدمة.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">10</p>
+      <h2 class="section-title">توفر الخدمة</h2>
+      <div class="section-body">نسعى للحفاظ على توفر التطبيق في جميع الأوقات، غير أننا لا نضمن عملاً متواصلاً دون انقطاع. قد تُعلَّق الخدمة مؤقتاً بسبب الصيانة أو التحديثات أو أسباب خارجة عن إرادتنا. لن تكون APPAS Studio Games مسؤولة عن الأضرار الناجمة عن انقطاع الخدمة.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">11</p>
+      <h2 class="section-title">تحديد المسؤولية</h2>
+      <div class="section-body">في أقصى حد يسمح به القانون المعمول به:<br><br>• يُقدَّم Saps "كما هو" و"حسب التوفر" دون أي ضمانات.<br>• لن تكون APPAS Studio Games مسؤولة عن أي أضرار مباشرة أو غير مباشرة أو عرضية أو تبعية ناجمة عن استخدام التطبيق أو عدم القدرة على استخدامه.<br>• لن تتجاوز المسؤولية الإجمالية لـ APPAS Studio Games تجاه المستخدم في أي حال المبلغ المدفوع لخطة Pro.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">12</p>
+      <h2 class="section-title">تعديلات الخدمة والشروط</h2>
+      <div class="section-body">تحتفظ APPAS Studio Games بحق تعديل التطبيق أو تعليقه أو إيقافه في أي وقت مع إشعار مسبق أو دونه.<br><br>يمكننا أيضاً تحديث شروط الخدمة هذه في أي وقت. تدخل التغييرات حيز التنفيذ فور نشرها في التطبيق. يُعدّ الاستمرار في استخدام Saps بعد نشر الشروط الجديدة قبولاً لها.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">13</p>
+      <h2 class="section-title">الإنهاء</h2>
+      <div class="section-body">تحتفظ APPAS Studio Games بحق تعليق الوصول إلى التطبيق أو إلغائه في حالة مخالفة هذه الشروط، دون الإخلال بأي إجراءات قانونية قد تكون واجبة.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">14</p>
+      <h2 class="section-title">القانون المعمول به والاختصاص القضائي</h2>
+      <div class="section-body">تخضع شروط الخدمة هذه للقانون الإسباني وتُفسَّر وفقاً له. لحل أي نزاع ينشأ عن هذه الشروط، يخضع الطرفان لاختصاص المحاكم الإسبانية، دون الإخلال بالحقوق التي قد تمنحها لوائح حماية المستهلك الأوروبية للمستخدم.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">15</p>
+      <h2 class="section-title">التواصل</h2>
+      <div class="section-body">لأي استفسار حول شروط الخدمة هذه:<br><br>APPAS Studio Games<br>appas.studiogames@gmail.com</div>
+    </div>
+    <a class="sibling-link" href="privacy.html">
+      <div>
+        <p class="sibling-label">سياسة الخصوصية</p>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--muted)" stroke-width="1.5" stroke-linecap="round"><path d="M3 13L13 3M13 3H6M13 3v7"/></svg>
+      </div>
+    </a>
+  </div>
+  <div data-lang="ja" class="lang-content" style="display:none" dir="ltr">
+    <h1 class="doc-title">利用規約</h1>
+    <p class="doc-updated">最終更新：2026年5月 · Saps</p>
+    <div class="divider"></div>
+    
+    <div class="doc-section">
+      <p class="section-num">01</p>
+      <h2 class="section-title">利用規約への同意</h2>
+      <div class="section-body">Sapsアプリをダウンロード、インストール、または使用することにより、本利用規約およびプライバシーポリシーに拘束されることに同意したものとみなされます。いずれかに同意しない場合は、本アプリを使用しないでください。<br><br>本規約は、Sapsの開発・運営責任者である<strong>APPAS Studio Games</strong>とお客様との間の法的契約を構成します。</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">02</p>
+      <h2 class="section-title">サービスの説明</h2>
+      <div class="section-body">SapsはGoogle Play Store（Android）およびApple App Store（iOS）で利用可能なモバイルアプリで、科学、歴史、語源学、天文学、生物学などの分野から毎日異なる豆知識を提供します。<br><br>ユーザーは各豆知識を星評価システムで評価し、個人ライブラリに保存し、コミュニティのグローバル評価を確認できます。また、カレンダーから豆知識の完全な履歴にアクセスできます。</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">03</p>
+      <h2 class="section-title">ユーザーアカウント</h2>
+      <div class="section-body">Sapsは登録やユーザーアカウントの作成を必要としません。サービスへのアクセスは匿名です。利用データ（評価、設定）はデバイスにローカル保存され、グローバル評価は完全に匿名でサーバーに保存されます。</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">04</p>
+      <h2 class="section-title">無料プランとProプラン</h2>
+      <div class="section-body"><strong>無料プラン</strong><br>本日の豆知識へのアクセス、評価、個人ライブラリへの保存が可能です。過去の未評価の日の豆知識にアクセスするには、報酬付き広告の視聴またはProプランが必要です。<br><br><strong>Proプラン · 買い切り</strong><br>Proプランは€2.99の買い切り（地域やストアにより価格が異なる場合があります）で取得でき、以下が付与されます：<br>• カレンダー履歴への完全・無制限アクセス。<br>• コンテンツ解除のための報酬付き広告の廃止。<br><br>Proプランはサブスクリプションではありません。自動更新や定期請求はありません。購入はGoogle Play（Android）またはApple App Store（iOS）で処理されます。<br><br><strong>購入の復元</strong><br>ProプランはGoogle PlayまたはApple IDアカウントに紐付けられます。アプリをアンインストールまたはデバイスを変更した場合、同じアカウントを維持している限り、アプリ起動時に自動的に復元できます。<br><br><strong>払い戻し</strong><br>デジタル購入はGoogle PlayまたはApple App Storeの払い戻しポリシーに従います。Google Playでは購入後48時間以内に申請できます。Appleではreportaproblem.apple.comから申請できます。APPAS Studio Gamesは払い戻しを直接管理しません。</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">05</p>
+      <h2 class="section-title">広告</h2>
+      <div class="section-body">無料版にはGoogle AdMobが管理する報酬付き広告が含まれます。これらの広告は任意です：カレンダーの特定の日のコンテンツを解除するために視聴するかどうかをユーザーが決定します。Proプランはコンテンツアクセスのための広告視聴を不要にします。<br><br>表示される広告はデバイスの広告識別子に基づいてパーソナライズされる場合があります。デバイスの設定からパーソナライズ広告を無効にできます。</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">06</p>
+      <h2 class="section-title">アプリのコンテンツ</h2>
+      <div class="section-body">Sapsに掲載される豆知識はAPPAS Studio Gamesチームによって審査・厳選されています。正確性と品質の確保に努めていますが、すべての情報の絶対的な正確性を保証することはできません。<br><br>サービスの品質と正確性を維持するため、いつでもコンテンツを変更、追加、削除する権利を留保します。</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">07</p>
+      <h2 class="section-title">ユーザーの投稿</h2>
+      <div class="section-body">ユーザーはアプリの機能を通じて豆知識の提案を送信できます。提案を送信することで、ユーザーは以下を宣言し同意します：<br><br>• 提案は事前通知や理由の説明なく、APPAS Studio Gamesによって公開、改変、修正、または拒否される場合があります。<br>• 公開された提案に対する金銭的またはその他の報酬は支払われません。<br>• 提案コンテンツはオリジナルまたはパブリックドメインであり、第三者の知的財産権を侵害しません。<br>• コンテンツは真実であり、虚偽、攻撃的、差別的、または宣伝目的の情報を含みません。<br>• APPAS Studio Gamesは審査前に送信されたユーザーの提案内容について責任を負いません。</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">08</p>
+      <h2 class="section-title">知的財産</h2>
+      <div class="section-body">デザイン、ソースコード、ロゴ、名称、厳選コンテンツを含むSapsアプリのすべての権利はAPPAS Studio Gamesに帰属し、適用される知的財産法によって保護されています。<br><br>ユーザーには、個人的・非商業的目的に限り、アプリを使用するための限定的・非独占的・譲渡不可・取消可能なライセンスが付与されます。</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">09</p>
+      <h2 class="section-title">ユーザーの行為</h2>
+      <div class="section-body">ユーザーは以下を行わないことに同意します：<br><br>• アプリのソースコードへのアクセス、逆コンパイル、改変の試み。<br>• 違法、詐欺的、または本規約に反する目的でのアプリ使用。<br>• アプリまたはそのサーバーの正常な動作への干渉、過負荷、中断。<br>• 偽アカウントの作成や評価システムの操作。<br>• サービスへの自動アクセス手段の使用。</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">10</p>
+      <h2 class="section-title">サービスの可用性</h2>
+      <div class="section-body">常にアプリを利用可能な状態に維持するよう努めますが、中断のない動作を保証するものではありません。メンテナンス、アップデート、または制御不能な原因によりサービスが一時停止される場合があります。APPAS Studio Gamesはサービス中断による損害について責任を負いません。</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">11</p>
+      <h2 class="section-title">責任の制限</h2>
+      <div class="section-body">適用法が許す最大限の範囲において：<br><br>• Sapsはいかなる保証もなく「現状のまま」「利用可能な状態で」提供されます。<br>• APPAS Studio Gamesはアプリの使用または使用不能から生じる直接的、間接的、付随的、結果的損害について責任を負いません。<br>• APPAS Studio Gamesのユーザーに対する総責任は、いかなる場合もユーザーがProプランに支払った金額を超えません。</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">12</p>
+      <h2 class="section-title">サービスおよび規約の変更</h2>
+      <div class="section-body">APPAS Studio Gamesは、事前通知の有無にかかわらず、アプリまたはその機能をいつでも変更、停止、終了する権利を留保します。<br><br>本利用規約もいつでも更新される場合があります。変更はアプリへの掲載時点で有効となります。新しい規約の掲載後にSapsを引き続き使用することで、その受け入れを示したものとみなします。</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">13</p>
+      <h2 class="section-title">解約</h2>
+      <div class="section-body">APPAS Studio Gamesは、本規約の違反があった場合、適用される法的措置を妨げることなく、アプリへのアクセスを停止または解除する権利を留保します。</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">14</p>
+      <h2 class="section-title">準拠法と管轄</h2>
+      <div class="section-body">本利用規約はスペイン法に準拠し、それに従って解釈されます。本規約から生じる紛争の解決については、EUの消費者規制がユーザーに付与する可能性のある権利を損なうことなく、当事者はスペインの裁判所の管轄に服します。</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">15</p>
+      <h2 class="section-title">お問い合わせ</h2>
+      <div class="section-body">本利用規約に関するお問い合わせ：<br><br>APPAS Studio Games<br>appas.studiogames@gmail.com</div>
+    </div>
+    <a class="sibling-link" href="privacy.html">
+      <div>
+        <p class="sibling-label">プライバシーポリシー</p>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--muted)" stroke-width="1.5" stroke-linecap="round"><path d="M3 13L13 3M13 3H6M13 3v7"/></svg>
+      </div>
+    </a>
+  </div>
+  <div data-lang="ko" class="lang-content" style="display:none" dir="ltr">
+    <h1 class="doc-title">이용약관</h1>
+    <p class="doc-updated">최종 업데이트: 2026년 5월 · Saps</p>
+    <div class="divider"></div>
+    
+    <div class="doc-section">
+      <p class="section-num">01</p>
+      <h2 class="section-title">약관 동의</h2>
+      <div class="section-body">Saps 앱을 다운로드, 설치 또는 사용함으로써 본 이용약관 및 개인정보처리방침에 동의하는 것으로 간주됩니다. 이에 동의하지 않으시면 앱을 사용하지 마십시오.<br><br>본 약관은 귀하와 Saps의 개발 및 운영을 담당하는 <strong>APPAS Studio Games</strong> 간의 법적 계약을 구성합니다.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">02</p>
+      <h2 class="section-title">서비스 설명</h2>
+      <div class="section-body">Saps는 Google Play Store(Android) 및 Apple App Store(iOS)에서 이용 가능한 모바일 앱으로, 과학, 역사, 어원학, 천문학, 생물학 등 다양한 분야의 흥미로운 사실을 매일 제공합니다.<br><br>사용자는 각 사실을 별점 시스템으로 평가하고, 개인 라이브러리에 저장하며, 커뮤니티 글로벌 평가를 확인할 수 있습니다. 또한 캘린더를 통해 전체 사실 기록에 접근할 수 있습니다.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">03</p>
+      <h2 class="section-title">사용자 계정</h2>
+      <div class="section-body">Saps는 가입이나 사용자 계정 생성이 필요하지 않습니다. 서비스 접근은 익명입니다. 사용 데이터(평가, 환경설정)는 기기에 로컬로 저장되며, 글로벌 평가는 서버에 완전히 익명으로 저장됩니다.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">04</p>
+      <h2 class="section-title">무료 플랜 및 Pro 플랜</h2>
+      <div class="section-body"><strong>무료 플랜</strong><br>오늘의 흥미로운 사실에 접근하고, 평가하고, 개인 라이브러리에 저장할 수 있습니다. 이전에 평가하지 않은 과거 날짜의 사실에 접근하려면 보상형 광고를 시청하거나 Pro 플랜이 필요합니다.<br><br><strong>Pro 플랜 · 일회성 결제</strong><br>Pro 플랜은 €2.99의 일회성 결제(지역 및 스토어에 따라 가격이 다를 수 있음)로 구입하며 다음을 제공합니다:<br>• 캘린더 기록에 대한 완전하고 무제한적인 접근.<br>• 콘텐츠 잠금 해제를 위한 보상형 광고 제거.<br><br>Pro 플랜은 구독이 아닙니다. 자동 갱신이나 정기 청구가 없습니다. 구매는 플랫폼에 따라 Google Play(Android) 또는 Apple App Store(iOS)를 통해 처리됩니다.<br><br><strong>구매 복원</strong><br>Pro 플랜은 Google Play 또는 Apple ID 계정에 연결됩니다. 앱을 삭제하거나 기기를 변경한 경우, 동일한 계정을 유지하는 한 앱 실행 시 자동으로 복원할 수 있습니다.<br><br><strong>환불</strong><br>디지털 구매는 Google Play 또는 Apple App Store의 환불 정책을 따릅니다. Google Play에서는 구매 후 48시간 이내에 환불을 요청할 수 있습니다. Apple에서는 reportaproblem.apple.com을 통해 요청할 수 있습니다. APPAS Studio Games는 환불을 직접 처리하지 않습니다.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">05</p>
+      <h2 class="section-title">광고</h2>
+      <div class="section-body">무료 버전에는 Google AdMob이 관리하는 보상형 광고가 포함됩니다. 이 광고는 선택 사항입니다: 캘린더의 특정 날짜 콘텐츠를 잠금 해제하는 대가로 시청 여부를 사용자가 결정합니다. Pro 플랜은 콘텐츠 접근을 위한 광고 시청을 불필요하게 합니다.<br><br>표시되는 광고는 기기의 광고 식별자를 기반으로 개인화될 수 있습니다. 기기 설정에서 개인화 광고를 비활성화할 수 있습니다.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">06</p>
+      <h2 class="section-title">앱 콘텐츠</h2>
+      <div class="section-body">Saps에 게시되는 흥미로운 사실들은 APPAS Studio Games 팀이 검토하고 선별합니다. 정확성과 품질 보장을 위해 노력하지만, 모든 정보의 절대적 정확성을 보장할 수는 없습니다.<br><br>서비스의 품질과 정확성 유지를 위해 언제든지 콘텐츠를 수정, 추가, 삭제할 권리를 보유합니다.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">07</p>
+      <h2 class="section-title">사용자 제안</h2>
+      <div class="section-body">사용자는 앱에서 활성화된 기능을 통해 흥미로운 사실을 제안할 수 있습니다. 제안을 제출함으로써 사용자는 다음을 선언하고 동의합니다:<br><br>• 제안은 사전 통지 없이 APPAS Studio Games에 의해 게시, 수정, 변경 또는 거절될 수 있습니다.<br>• 게시된 제안에 대한 금전적 또는 기타 보상을 받지 않습니다.<br>• 제안 내용은 오리지널이거나 공공 도메인이며 제3자 지식재산권을 침해하지 않습니다.<br>• 내용은 사실이며 허위, 공격적, 차별적 또는 광고성 정보를 포함하지 않습니다.<br>• APPAS Studio Games는 검토 전 사용자가 제출한 제안 내용에 대한 책임이 없습니다.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">08</p>
+      <h2 class="section-title">지식재산권</h2>
+      <div class="section-body">디자인, 소스코드, 로고, 명칭, 선별 콘텐츠를 포함한 Saps 앱의 모든 권리는 APPAS Studio Games에 귀속되며 적용 가능한 지식재산법에 의해 보호됩니다.<br><br>사용자에게는 개인적, 비상업적 목적으로만 앱을 사용하기 위한 제한적, 비독점적, 양도 불가, 취소 가능한 라이선스가 부여됩니다.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">09</p>
+      <h2 class="section-title">사용자 행동</h2>
+      <div class="section-body">사용자는 다음을 하지 않기로 동의합니다:<br><br>• 앱의 소스코드 접근, 역컴파일 또는 수정 시도.<br>• 불법적, 사기적 또는 본 약관에 위배되는 목적으로 앱 사용.<br>• 앱 또는 서버의 정상 운영 방해, 과부하 또는 중단.<br>• 가짜 계정 생성 또는 평가 시스템 조작.<br>• 자동화된 수단을 사용하여 서비스 접근.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">10</p>
+      <h2 class="section-title">서비스 가용성</h2>
+      <div class="section-body">항상 앱을 이용 가능한 상태로 유지하기 위해 노력하지만, 중단 없는 운영을 보장하지 않습니다. 유지보수, 업데이트 또는 통제 불가능한 원인으로 서비스가 일시적으로 중단될 수 있습니다. APPAS Studio Games는 서비스 중단으로 인한 손해에 대해 책임을 지지 않습니다.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">11</p>
+      <h2 class="section-title">책임 제한</h2>
+      <div class="section-body">적용 가능한 법률이 허용하는 최대 범위 내에서:<br><br>• Saps는 어떠한 보증도 없이 "있는 그대로" 및 "이용 가능한 상태"로 제공됩니다.<br>• APPAS Studio Games는 앱의 사용 또는 사용 불능으로 인한 직접적, 간접적, 부수적 또는 결과적 손해에 대해 책임을 지지 않습니다.<br>• APPAS Studio Games의 사용자에 대한 총 책임은 어떠한 경우에도 사용자가 Pro 플랜에 지불한 금액을 초과하지 않습니다.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">12</p>
+      <h2 class="section-title">서비스 및 약관 변경</h2>
+      <div class="section-body">APPAS Studio Games는 사전 통지의 유무에 관계없이 언제든지 앱이나 그 기능을 수정, 일시 중단 또는 중단할 권리를 보유합니다.<br><br>본 이용약관도 언제든지 업데이트될 수 있습니다. 변경사항은 앱에 게시된 시점부터 효력이 발생합니다. 새로운 약관 게시 후 Saps를 계속 사용하면 이에 동의한 것으로 간주됩니다.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">13</p>
+      <h2 class="section-title">해지</h2>
+      <div class="section-body">APPAS Studio Games는 본 약관 위반 시 법적 조치를 방해하지 않고 앱 접근을 일시 중단하거나 취소할 권리를 보유합니다.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">14</p>
+      <h2 class="section-title">준거법 및 관할권</h2>
+      <div class="section-body">본 이용약관은 스페인 법률에 따라 규율되고 해석됩니다. 본 약관에서 발생하는 분쟁의 해결을 위해 당사자들은 EU 소비자 규정이 사용자에게 부여할 수 있는 권리를 해치지 않고 스페인 법원의 관할권에 복종합니다.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">15</p>
+      <h2 class="section-title">문의</h2>
+      <div class="section-body">본 이용약관에 관한 문의:<br><br>APPAS Studio Games<br>appas.studiogames@gmail.com</div>
+    </div>
+    <a class="sibling-link" href="privacy.html">
+      <div>
+        <p class="sibling-label">개인정보 처리방침</p>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--muted)" stroke-width="1.5" stroke-linecap="round"><path d="M3 13L13 3M13 3H6M13 3v7"/></svg>
+      </div>
+    </a>
+  </div>
+  <div data-lang="tr" class="lang-content" style="display:none" dir="ltr">
+    <h1 class="doc-title">Hizmet Şartları</h1>
+    <p class="doc-updated">Son güncelleme: Mayıs 2026 · Saps</p>
+    <div class="divider"></div>
+    
+    <div class="doc-section">
+      <p class="section-num">01</p>
+      <h2 class="section-title">Şartların Kabulü</h2>
+      <div class="section-body">Saps uygulamasını indirerek, yükleyerek veya kullanarak bu Hizmet Şartlarına ve Gizlilik Politikamıza bağlı olmayı kabul edersiniz. Herhangi birini kabul etmiyorsanız uygulamayı kullanmamalısınız.<br><br>Bu şartlar, sizinle Saps'ın geliştirilmesi ve işletilmesinden sorumlu <strong>APPAS Studio Games</strong> arasındaki hukuki sözleşmeyi oluşturur.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">02</p>
+      <h2 class="section-title">Hizmetin Açıklaması</h2>
+      <div class="section-body">Saps; Google Play Store (Android) ve Apple App Store (iOS)'ta mevcut olan, bilim, tarih, etimoloji, astronomi, biyoloji ve diğer alanlarda her gün farklı bir ilginç gerçek sunan bir mobil uygulamadır.<br><br>Kullanıcılar her gerçeği yıldız derecelendirme sistemiyle değerlendirebilir, kişisel kütüphanelerine kaydedebilir ve topluluk genelindeki küresel derecelendirmeleri görebilir. Ayrıca takvim üzerinden tüm gerçeklerin geçmişine erişilebilir.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">03</p>
+      <h2 class="section-title">Kullanıcı Hesabı</h2>
+      <div class="section-body">Saps kayıt veya kullanıcı hesabı oluşturma gerektirmez. Hizmete erişim anonimdir. Kullanım verileri (derecelendirmeler, tercihler) cihazınızda yerel olarak depolanır; küresel derecelendirmeler ise sunucularımızda tamamen anonim şekilde saklanır.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">04</p>
+      <h2 class="section-title">Ücretsiz Plan ve Pro Plan</h2>
+      <div class="section-body"><strong>Ücretsiz Plan</strong><br>Bugünün ilginç gerçeğine erişim, değerlendirme ve kişisel kütüphaneye kaydetme imkânı sunar. Daha önce değerlendirilmemiş geçmiş günlerin içeriklerine erişmek için ödüllü reklam izlemek veya Pro Plan'a sahip olmak gerekir.<br><br><strong>Pro Plan · Tek Seferlik Ödeme</strong><br>Pro Plan, €2,99 tutarında tek seferlik bir ödemeyle (fiyat bölgeye ve mağazaya göre farklılık gösterebilir) edinilir ve şunları sağlar:<br>• Takvim geçmişine tam ve sınırsız erişim.<br>• İçerik kilidini açmak için ödüllü reklamların kaldırılması.<br><br>Pro Plan bir abonelik değildir. Otomatik yenileme veya periyodik ücret yoktur. Satın alma, platforma göre Google Play (Android) veya Apple App Store (iOS) üzerinden işlenir.<br><br><strong>Satın Alımları Geri Yükleme</strong><br>Pro Plan, Google Play veya Apple ID hesabınıza bağlıdır. Uygulamayı kaldırırsanız veya cihazınızı değiştirirseniz, aynı hesabı kullandığınız sürece uygulamayı başlatırken Pro Plan otomatik olarak geri yüklenebilir.<br><br><strong>İadeler</strong><br>Dijital satın alımlar Google Play veya Apple App Store'un iade politikasına tabidir. Google Play'de satın almadan itibaren 48 saat içinde iade talep edebilirsiniz. Apple'da reportaproblem.apple.com üzerinden talep edebilirsiniz. APPAS Studio Games iadeleri doğrudan yönetmez.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">05</p>
+      <h2 class="section-title">Reklamlar</h2>
+      <div class="section-body">Ücretsiz sürüm, Google AdMob tarafından yönetilen ödüllü reklamlar içerir. Bu reklamlar isteğe bağlıdır: kullanıcı, takvimde belirli bir günün içeriğinin kilidini açmak karşılığında izleyip izlememeye karar verir. Pro Plan, içeriğe erişmek için reklam izleme ihtiyacını ortadan kaldırır.<br><br>Görüntülenen reklamlar, cihazınızın reklam tanımlayıcısına göre kişiselleştirilebilir. Cihaz ayarlarından kişiselleştirilmiş reklamları devre dışı bırakabilirsiniz.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">06</p>
+      <h2 class="section-title">Uygulama İçeriği</h2>
+      <div class="section-body">Saps'ta yayımlanan ilginç gerçekler, APPAS Studio Games ekibi tarafından incelenir ve derlenir. Doğruluklarını ve kalitelerini sağlamaya çalışıyoruz, ancak tüm bilgilerin mutlak doğruluğunu garanti edemeyiz.<br><br>Hizmetin kalitesini ve doğruluğunu korumak amacıyla içerikleri istediğimiz zaman değiştirme, ekleme veya kaldırma hakkımızı saklı tutarız.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">07</p>
+      <h2 class="section-title">Kullanıcı Önerileri</h2>
+      <div class="section-body">Kullanıcılar, uygulamada etkinleştirilen özellik aracılığıyla ilginç gerçek önerileri gönderebilir. Öneri göndererek kullanıcı şunları beyan eder ve kabul eder:<br><br>• Öneri, önceden haber vermeksizin APPAS Studio Games tarafından yayımlanabilir, uyarlanabilir, değiştirilebilir veya reddedilebilir.<br>• Yayımlanan öneriler için herhangi bir mali veya başka türlü tazminat alınmaz.<br>• Önerilen içerik orijinal veya kamu malıdır ve üçüncü taraf fikri mülkiyet haklarını ihlal etmez.<br>• İçerik doğrudur ve yanlış, saldırgan, ayrımcı veya reklam amaçlı bilgiler içermez.<br>• APPAS Studio Games, incelenmeden önce kullanıcılar tarafından gönderilen önerilerin içeriğinden sorumlu değildir.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">08</p>
+      <h2 class="section-title">Fikri Mülkiyet</h2>
+      <div class="section-body">Tasarım, kaynak kodu, logolar, isim ve seçilmiş içerik dahil Saps uygulamasına ilişkin tüm haklar APPAS Studio Games'e aittir ve geçerli fikri mülkiyet yasalarıyla korunmaktadır.<br><br>Kullanıcıya, uygulamayı yalnızca kişisel ve ticari olmayan amaçlarla kullanmak için sınırlı, münhasır olmayan, devredilemez ve iptal edilebilir bir lisans verilir.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">09</p>
+      <h2 class="section-title">Kullanıcı Davranışı</h2>
+      <div class="section-body">Kullanıcı aşağıdakileri yapmamayı taahhüt eder:<br><br>• Uygulamanın kaynak koduna erişmeye, kodu çözmeye veya değiştirmeye çalışmak.<br>• Uygulamayı yasadışı, sahtecilik içeren veya bu şartlara aykırı amaçlarla kullanmak.<br>• Uygulamanın veya sunucularının normal çalışmasını engellemek, aşırı yüklemek veya kesintiye uğratmak.<br>• Sahte hesaplar oluşturmak veya derecelendirme sistemini manipüle etmek.<br>• Hizmete erişmek için otomatik araçlar kullanmak.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">10</p>
+      <h2 class="section-title">Hizmet Kullanılabilirliği</h2>
+      <div class="section-body">Uygulamayı her zaman kullanılabilir tutmaya çalışıyoruz, ancak kesintisiz çalışmayı garanti edemeyiz. Bakım, güncellemeler veya kontrolümüz dışındaki nedenlerle hizmet geçici olarak askıya alınabilir. APPAS Studio Games, hizmet kesintilerinden kaynaklanan zararlardan sorumlu olmayacaktır.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">11</p>
+      <h2 class="section-title">Sorumluluk Sınırlaması</h2>
+      <div class="section-body">Geçerli yasaların izin verdiği azami ölçüde:<br><br>• Saps herhangi bir garanti olmaksızın "olduğu gibi" ve "mevcut olduğunda" sunulur.<br>• APPAS Studio Games, uygulamanın kullanımından veya kullanılamamasından kaynaklanan doğrudan, dolaylı, arızi veya sonuç olarak ortaya çıkan zararlardan sorumlu değildir.<br>• APPAS Studio Games'in kullanıcıya karşı toplam sorumluluğu hiçbir durumda kullanıcının Pro Plan için ödediği tutarı aşmaz.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">12</p>
+      <h2 class="section-title">Hizmet ve Şartlarda Değişiklikler</h2>
+      <div class="section-body">APPAS Studio Games, önceden haber vererek veya vermeyerek uygulamayı ya da özelliklerinden herhangi birini istediği zaman değiştirme, askıya alma veya sona erdirme hakkını saklı tutar.<br><br>Bu Hizmet Şartlarını da istediğimiz zaman güncelleyebiliriz. Değişiklikler uygulamada yayımlandıkları anda yürürlüğe girer. Yeni şartlar yayımlandıktan sonra Saps'ı kullanmaya devam etmek, şartları kabul ettiğiniz anlamına gelir.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">13</p>
+      <h2 class="section-title">Fesih</h2>
+      <div class="section-body">APPAS Studio Games, bu şartların ihlali halinde geçerli hukuki işlemlere başvurma hakkı saklı kalmak kaydıyla uygulamaya erişimi askıya alma veya iptal etme hakkını saklı tutar.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">14</p>
+      <h2 class="section-title">Geçerli Hukuk ve Yargı Yetkisi</h2>
+      <div class="section-body">Bu Hizmet Şartları, İspanya hukukuna göre yönetilir ve yorumlanır. Bu şartlardan doğan uyuşmazlıkların çözümü için taraflar, AB tüketici mevzuatının kullanıcıya tanıyabileceği haklar saklı kalmak üzere İspanya mahkemelerinin yargı yetkisine tabi olur.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">15</p>
+      <h2 class="section-title">İletişim</h2>
+      <div class="section-body">Bu Hizmet Şartları hakkındaki sorularınız için:<br><br>APPAS Studio Games<br>appas.studiogames@gmail.com</div>
+    </div>
+    <a class="sibling-link" href="privacy.html">
+      <div>
+        <p class="sibling-label">Gizlilik Politikası</p>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--muted)" stroke-width="1.5" stroke-linecap="round"><path d="M3 13L13 3M13 3H6M13 3v7"/></svg>
+      </div>
+    </a>
+  </div>
+  <div data-lang="ru" class="lang-content" style="display:none" dir="ltr">
+    <h1 class="doc-title">Условия использования</h1>
+    <p class="doc-updated">Последнее обновление: май 2026 · Saps</p>
+    <div class="divider"></div>
+    
+    <div class="doc-section">
+      <p class="section-num">01</p>
+      <h2 class="section-title">Принятие условий</h2>
+      <div class="section-body">Загружая, устанавливая или используя приложение Saps, вы соглашаетесь соблюдать настоящие Условия использования и нашу Политику конфиденциальности. Если вы не согласны с каким-либо из них, вы не должны использовать приложение.<br><br>Настоящие условия представляют собой юридическое соглашение между вами и <strong>APPAS Studio Games</strong>, ответственной за разработку и эксплуатацию Saps.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">02</p>
+      <h2 class="section-title">Описание сервиса</h2>
+      <div class="section-body">Saps — мобильное приложение, доступное в Google Play Store (Android) и Apple App Store (iOS), которое предлагает ежедневно новый интересный факт из областей науки, истории, этимологии, астрономии, биологии и других дисциплин.<br><br>Пользователи могут оценивать каждый факт по звёздной системе, сохранять в личную библиотеку и просматривать общие рейтинги сообщества. Кроме того, полная история фактов доступна через календарь.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">03</p>
+      <h2 class="section-title">Учётная запись пользователя</h2>
+      <div class="section-body">Saps не требует регистрации или создания учётной записи. Доступ к сервису анонимен. Данные об использовании (оценки, настройки) хранятся локально на вашем устройстве, а для глобальных рейтингов — полностью анонимно на наших серверах.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">04</p>
+      <h2 class="section-title">Бесплатный план и план Pro</h2>
+      <div class="section-body"><strong>Бесплатный план</strong><br>Обеспечивает доступ к сегодняшнему интересному факту, его оценку и сохранение в личную библиотеку. Для доступа к ранее не оценённым фактам прошлых дней требуется просмотр награждаемой рекламы или наличие плана Pro.<br><br><strong>План Pro · Единовременная оплата</strong><br>План Pro приобретается за единовременный платёж в размере 2,99 € (цена может варьироваться в зависимости от региона и магазина) и предоставляет:<br>• Полный и неограниченный доступ к истории в календаре.<br>• Отключение награждаемой рекламы для разблокировки контента.<br><br>План Pro не является подпиской. Автоматического продления и периодических платежей нет. Покупка обрабатывается через Google Play (Android) или Apple App Store (iOS) в зависимости от платформы.<br><br><strong>Восстановление покупок</strong><br>План Pro привязан к вашей учётной записи Google Play или Apple ID. После удаления приложения или смены устройства план Pro можно автоматически восстановить при запуске приложения, используя ту же учётную запись.<br><br><strong>Возвраты</strong><br>Цифровые покупки регулируются политикой возврата Google Play или Apple App Store. В Google Play можно запросить возврат в течение 48 часов после покупки. В Apple — через reportaproblem.apple.com. APPAS Studio Games не управляет возвратами напрямую.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">05</p>
+      <h2 class="section-title">Реклама</h2>
+      <div class="section-body">Бесплатная версия включает награждаемую рекламу, управляемую Google AdMob. Эта реклама необязательна: пользователь сам решает, смотреть ли её в обмен на разблокировку контента конкретного дня в календаре. План Pro устраняет необходимость просмотра рекламы для доступа к контенту.<br><br>Отображаемая реклама может быть персонализирована на основе рекламного идентификатора вашего устройства. Вы можете отключить персонализированную рекламу в настройках устройства.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">06</p>
+      <h2 class="section-title">Контент приложения</h2>
+      <div class="section-body">Интересные факты, публикуемые в Saps, проверяются и отбираются командой APPAS Studio Games. Мы стремимся обеспечить их достоверность и качество, однако не можем гарантировать абсолютную точность всей информации.<br><br>Мы оставляем за собой право изменять, добавлять или удалять контент в любое время для поддержания качества и точности сервиса без возникновения какой-либо ответственности перед пользователем.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">07</p>
+      <h2 class="section-title">Предложения пользователей</h2>
+      <div class="section-body">Пользователи могут отправлять предложения интересных фактов через функцию, доступную в приложении. Отправляя предложение, пользователь заявляет и соглашается с тем, что:<br><br>• Предложение может быть опубликовано, адаптировано, изменено или отклонено APPAS Studio Games без предварительного уведомления.<br>• За опубликованные предложения не предусматривается никакое вознаграждение.<br>• Предложенный контент является оригинальным или общедоступным и не нарушает права интеллектуальной собственности третьих лиц.<br>• Контент правдив и не содержит ложной, оскорбительной, дискриминационной или рекламной информации.<br>• APPAS Studio Games не несёт ответственности за содержание предложений до их проверки.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">08</p>
+      <h2 class="section-title">Интеллектуальная собственность</h2>
+      <div class="section-body">Все права на приложение Saps, включая дизайн, исходный код, логотипы, название и отобранный контент, принадлежат APPAS Studio Games и защищены применимым законодательством об интеллектуальной собственности.<br><br>Пользователю предоставляется ограниченная, неисключительная, непередаваемая и отзывная лицензия на использование приложения исключительно в личных и некоммерческих целях.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">09</p>
+      <h2 class="section-title">Поведение пользователя</h2>
+      <div class="section-body">Пользователь обязуется не:<br><br>• Пытаться получить доступ, декомпилировать или изменить исходный код приложения.<br>• Использовать приложение в незаконных, мошеннических целях или в нарушение настоящих условий.<br>• Вмешиваться в нормальную работу приложения или его серверов, перегружать или прерывать её.<br>• Создавать фиктивные аккаунты или манипулировать системой оценок.<br>• Использовать автоматизированные средства для доступа к сервису.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">10</p>
+      <h2 class="section-title">Доступность сервиса</h2>
+      <div class="section-body">Мы стремимся поддерживать доступность приложения в любое время, однако не гарантируем бесперебойную работу. Сервис может быть временно приостановлен по причинам технического обслуживания, обновлений или обстоятельств, не зависящих от нас. APPAS Studio Games не несёт ответственности за ущерб, вызванный перебоями в работе сервиса.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">11</p>
+      <h2 class="section-title">Ограничение ответственности</h2>
+      <div class="section-body">В максимальной степени, допустимой применимым законодательством:<br><br>• Saps предоставляется «как есть» и «по мере доступности» без каких-либо гарантий.<br>• APPAS Studio Games не несёт ответственности за прямые, косвенные, случайные или косвенные убытки, возникающие вследствие использования или невозможности использования приложения.<br>• Совокупная ответственность APPAS Studio Games перед пользователем ни при каких обстоятельствах не превысит сумму, уплаченную пользователем за план Pro.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">12</p>
+      <h2 class="section-title">Изменения сервиса и условий</h2>
+      <div class="section-body">APPAS Studio Games оставляет за собой право изменять, приостанавливать или прекращать работу приложения или любой его функции в любое время с предварительным уведомлением или без него.<br><br>Мы также можем обновлять настоящие Условия использования в любое время. Изменения вступают в силу с момента их публикации в приложении. Продолжение использования Saps после публикации новых условий означает их принятие.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">13</p>
+      <h2 class="section-title">Расторжение</h2>
+      <div class="section-body">APPAS Studio Games оставляет за собой право приостановить или отменить доступ к приложению в случае нарушения настоящих условий без ущерба для применимых правовых мер.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">14</p>
+      <h2 class="section-title">Применимое право и юрисдикция</h2>
+      <div class="section-body">Настоящие Условия использования регулируются и толкуются в соответствии с законодательством Испании. Для разрешения любых споров, вытекающих из настоящих условий, стороны подчиняются юрисдикции судов Испании без ущерба для прав, которые законодательство ЕС о защите потребителей может предоставлять пользователю.</div>
+    </div>
+    <div class="doc-section">
+      <p class="section-num">15</p>
+      <h2 class="section-title">Контакты</h2>
+      <div class="section-body">По любым вопросам, касающимся настоящих Условий использования:<br><br>APPAS Studio Games<br>appas.studiogames@gmail.com</div>
+    </div>
+    <a class="sibling-link" href="privacy.html">
+      <div>
+        <p class="sibling-label">Политика конфиденциальности</p>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--muted)" stroke-width="1.5" stroke-linecap="round"><path d="M3 13L13 3M13 3H6M13 3v7"/></svg>
+      </div>
+    </a>
+  </div>
 </div>
 
 <footer>
@@ -455,18 +1256,43 @@
 </footer>
 
 <script>
-  function setLang(l) {
-    document.querySelectorAll('[data-lang]').forEach(el => {
-      el.classList.toggle('active', el.dataset.lang === l);
-    });
-    document.getElementById('btn-es').classList.toggle('active', l === 'es');
-    document.getElementById('btn-en').classList.toggle('active', l === 'en');
-    document.getElementById('bc-label').textContent = l === 'es' ? 'Términos de Servicio' : 'Terms of Service';
-    document.getElementById('sibling-label').textContent = l === 'es' ? 'Ver también' : 'Also available';
-    document.getElementById('sibling-name').textContent = l === 'es' ? 'Política de Privacidad →' : 'Privacy Policy →';
-  }
+const LANG_NAMES = {"es":"Español","en":"English","fr":"Français","de":"Deutsch","pt":"Português","id":"Bahasa Indonesia","zh":"中文","hi":"हिन्दी","ar":"العربية","ja":"日本語","ko":"한국어","tr":"Türkçe","ru":"Русский"};
+const PAGE_TITLES = {
+  privacy: {"es":"Política de Privacidad","en":"Privacy Policy","fr":"Politique de confidentialité","de":"Datenschutzrichtlinie","pt":"Política de Privacidade","id":"Kebijakan Privasi","zh":"隐私政策","hi":"गोपनीयता नीति","ar":"سياسة الخصوصية","ja":"プライバシーポリシー","ko":"개인정보처리방침","tr":"Gizlilik Politikası","ru":"Политика конфиденциальности"},
+  terms:   {"es":"Términos de Servicio","en":"Terms of Service","fr":"Conditions d'utilisation","de":"Nutzungsbedingungen","pt":"Termos de Serviço","id":"Ketentuan Layanan","zh":"服务条款","hi":"सेवा की शर्तें","ar":"شروط الخدمة","ja":"利用規約","ko":"이용약관","tr":"Hizmet Şartları","ru":"Условия использования"},
+};
+const PAGE = 'terms';
 
-  if (!navigator.language.startsWith('es')) setLang('en');
+let currentLang = 'en';
+
+function setLang(l) {
+  currentLang = l;
+  document.querySelectorAll('.lang-content').forEach(el => {
+    el.style.display = el.dataset.lang === l ? 'block' : 'none';
+  });
+  document.querySelectorAll('.lang-option').forEach(btn => {
+    btn.classList.toggle('active-opt', btn.dataset.lang === l);
+  });
+  document.getElementById('current-lang-name').textContent = LANG_NAMES[l] || l;
+  document.getElementById('bc-page').textContent = PAGE_TITLES[PAGE][l] || PAGE_TITLES[PAGE]['en'];
+  document.documentElement.lang = l;
+  document.getElementById('lang-menu').classList.remove('open');
+}
+
+function toggleLangMenu() {
+  document.getElementById('lang-menu').classList.toggle('open');
+}
+
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.lang-selector')) {
+    document.getElementById('lang-menu').classList.remove('open');
+  }
+});
+
+// Auto-detect language
+const nav = navigator.language || 'en';
+const detected = 'es,en,fr,de,pt,id,zh,hi,ar,ja,ko,tr,ru'.split(',').find(l => nav.startsWith(l)) || 'en';
+setLang(detected);
 </script>
 </body>
 </html>
