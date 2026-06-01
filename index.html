@@ -10,18 +10,19 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
     :root {
-      --canvas:   #F8F8F6;
-      --white:    #FFFFFF;
-      --ink:      #111111;
-      --ink2:     #2F2F2F;
-      --muted:    #787774;
-      --border:   #E6E6E4;
-      --radius:   10px;
-      --max-w:    1100px;
+      --canvas:  #F8F8F6;
+      --white:   #FFFFFF;
+      --ink:     #111111;
+      --ink2:    #2F2F2F;
+      --muted:   #787774;
+      --border:  #E6E6E4;
+      --dark:    #0D0C0B;
+      --radius:  10px;
+      --max-w:   1100px;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: auto; }
 
     body {
       background: var(--canvas);
@@ -32,28 +33,15 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* subtle ambient radial — fixed, pointer-events-none */
-    body::after {
-      content: '';
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      background:
-        radial-gradient(ellipse 60% 40% at 80% 10%, rgba(0,0,0,0.025) 0%, transparent 70%),
-        radial-gradient(ellipse 50% 50% at 10% 90%, rgba(0,0,0,0.02) 0%, transparent 70%);
-    }
-
-    /* ── NAV ─────────────────────────────────────────────── */
+    /* ── NAV ── */
     nav {
       position: fixed;
       top: 24px;
       left: 50%;
       transform: translateX(-50%);
-      z-index: 100;
+      z-index: 1000;
       display: flex;
       align-items: center;
-      gap: 0;
       padding: 10px 6px 10px 20px;
       border-radius: 100px;
       background: rgba(248,248,246,0.88);
@@ -61,7 +49,18 @@
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       white-space: nowrap;
+      transition: background .5s, border-color .5s;
     }
+
+    nav.nav--dark {
+      background: rgba(13,12,11,0.88);
+      border-color: rgba(255,255,255,0.08);
+    }
+
+    nav.nav--dark .nav-logo { color: rgba(255,255,255,0.85); }
+    nav.nav--dark .nav-links a { color: rgba(255,255,255,0.45); }
+    nav.nav--dark .nav-links a:hover { color: #fff; background: rgba(255,255,255,0.07); }
+    nav.nav--dark .nav-cta { background: rgba(255,255,255,0.95) !important; color: var(--ink) !important; }
 
     .nav-logo {
       font-family: 'Playfair Display', serif;
@@ -70,13 +69,10 @@
       color: var(--ink);
       letter-spacing: .04em;
       margin-right: 24px;
+      transition: color .5s;
     }
 
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 2px;
-    }
+    .nav-links { display: flex; align-items: center; gap: 2px; }
 
     .nav-links a {
       color: var(--muted);
@@ -98,60 +94,62 @@
       font-weight: 500 !important;
     }
 
-    .nav-cta:hover {
-      background: var(--ink2) !important;
-      color: var(--white) !important;
-    }
-
-    /* ── WRAPPER ─────────────────────────────────────────── */
+    /* ── WRAP ── */
     .wrap {
       max-width: var(--max-w);
       margin: 0 auto;
-      padding: 0 40px;
+      padding: 0 48px;
       position: relative;
-      z-index: 1;
     }
 
-    /* ── HERO ────────────────────────────────────────────── */
-    .hero {
-      min-height: 100dvh;
-      display: grid;
-      grid-template-rows: 1fr auto;
-      padding-top: 100px;
+    /* ── HERO ── */
+    .s-hero {
+      min-height: 100vh;
       position: relative;
-      z-index: 1;
-    }
-
-    .hero-main {
       display: flex;
-      flex-direction: column;
-      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    #hero-canvas {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 48%;
+      height: 100%;
+      display: block;
+      background: transparent;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      padding: 120px 48px 80px;
       max-width: var(--max-w);
       margin: 0 auto;
-      padding: 0 40px;
       width: 100%;
+      will-change: transform, opacity;
     }
 
-    .eyebrow {
+    .hero-eyebrow {
       font-size: .65rem;
       letter-spacing: .28em;
       text-transform: uppercase;
       color: var(--muted);
-      margin-bottom: 28px;
+      margin-bottom: 32px;
       display: flex;
       align-items: center;
       gap: 14px;
       opacity: 0;
       transform: translateY(10px);
-      animation: up .7s cubic-bezier(0.16,1,0.3,1) .15s forwards;
     }
 
-    .eyebrow::before {
+    .hero-eyebrow::before {
       content: '';
       width: 20px;
       height: 1px;
       background: var(--muted);
-      display: inline-block;
     }
 
     .hero-title {
@@ -159,47 +157,40 @@
       font-weight: 900;
       line-height: 1;
       letter-spacing: -.03em;
-      margin-bottom: 48px;
-      opacity: 0;
-      transform: translateY(16px);
-      animation: up .9s cubic-bezier(0.16,1,0.3,1) .25s forwards;
+      margin-bottom: 56px;
     }
 
-    .hero-title .t1 {
-      font-size: clamp(4.5rem, 11vw, 11rem);
+    .line-wrap {
+      overflow: hidden;
       display: block;
+    }
+
+    .hero-line {
+      display: block;
+      font-size: clamp(4.5rem, 11vw, 11rem);
       color: var(--ink);
+      transform: translateY(110%);
     }
 
-    .hero-title .t2 {
-      font-size: clamp(4.5rem, 11vw, 11rem);
-      display: block;
+    .hero-line--ghost {
       color: transparent;
-      -webkit-text-stroke: 1.5px rgba(17,17,17,.2);
+      -webkit-text-stroke: 1.5px rgba(17,17,17,.18);
       font-style: italic;
       font-weight: 400;
     }
 
-    .hero-title .t3 {
-      font-size: clamp(4.5rem, 11vw, 11rem);
-      display: block;
-      color: var(--ink);
-    }
-
-    .hero-footer {
+    .hero-foot {
       display: flex;
       align-items: flex-end;
       justify-content: space-between;
       gap: 32px;
       opacity: 0;
-      transform: translateY(10px);
-      animation: up .7s cubic-bezier(0.16,1,0.3,1) .5s forwards;
     }
 
     .hero-desc {
-      max-width: 360px;
+      max-width: 380px;
       font-size: .9rem;
-      line-height: 1.75;
+      line-height: 1.8;
       color: var(--muted);
     }
 
@@ -222,44 +213,97 @@
 
     .scroll-bar {
       width: 1px;
-      height: 44px;
+      height: 48px;
       background: linear-gradient(to bottom, var(--ink), transparent);
       opacity: .15;
-      animation: pulse 2.5s ease-in-out infinite;
+      animation: pulse-bar 2.5s ease-in-out infinite;
     }
 
-    @keyframes pulse {
-      0%,100% { opacity: .1; }
-      50%      { opacity: .3; }
+    @keyframes pulse-bar {
+      0%,100% { opacity: .08; }
+      50%      { opacity: .25; }
     }
 
-    /* ── DIVIDER ─────────────────────────────────────────── */
-    .divider {
-      width: 100%;
-      height: 1px;
-      background: var(--border);
+    /* ── MANIFESTO ── */
+    .s-manifesto {
+      background: var(--dark);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       position: relative;
-      z-index: 1;
+      overflow: hidden;
     }
 
-    /* ── MARQUEE ─────────────────────────────────────────── */
+    .s-manifesto::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(255,255,255,0.02) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .manifesto-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 120px 48px;
+      text-align: center;
+    }
+
+    .manifesto-kicker {
+      font-size: .6rem;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.18);
+      margin-bottom: 64px;
+    }
+
+    .manifesto-text {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.9rem, 3.8vw, 3.6rem);
+      font-weight: 700;
+      line-height: 1.22;
+      letter-spacing: -.02em;
+      color: var(--white);
+      line-height: 1.35;
+    }
+
+    .m-word {
+      opacity: 0.07;
+      display: inline;
+    }
+
+    .manifesto-sub {
+      margin-top: 64px;
+      font-size: .68rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.18);
+      opacity: 0;
+      transform: translateY(12px);
+    }
+
+    /* ── MARQUEE ── */
     .marquee-strip {
       overflow: hidden;
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
       padding: 13px 0;
       background: var(--white);
-      position: relative;
-      z-index: 1;
     }
 
     .marquee-track {
       display: flex;
       width: max-content;
-      animation: scroll 28s linear infinite;
+      animation: mq 28s linear infinite;
     }
 
     .marquee-track:hover { animation-play-state: paused; }
+
+    @keyframes mq {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
 
     .m-item {
       display: flex;
@@ -281,16 +325,10 @@
       flex-shrink: 0;
     }
 
-    @keyframes scroll {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
-    }
-
-    /* ── SECTION ─────────────────────────────────────────── */
-    .section {
-      padding: 96px 0;
-      position: relative;
-      z-index: 1;
+    /* ── WORK ── */
+    .s-work {
+      padding: 136px 0;
+      background: var(--canvas);
     }
 
     .section-label {
@@ -298,7 +336,7 @@
       letter-spacing: .28em;
       text-transform: uppercase;
       color: var(--muted);
-      margin-bottom: 48px;
+      margin-bottom: 56px;
       display: flex;
       align-items: center;
       gap: 14px;
@@ -311,60 +349,45 @@
       background: var(--border);
     }
 
-    /* ── APPS BENTO ──────────────────────────────────────── */
-    .bento {
+    .work-grid {
       display: grid;
       grid-template-columns: 7fr 5fr;
       grid-template-rows: auto auto;
       gap: 12px;
     }
 
-    /* Card shell */
-    .card {
+    .work-card {
       background: var(--white);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 36px;
-      transition: box-shadow .25s cubic-bezier(0.16,1,0.3,1),
-                  transform .25s cubic-bezier(0.16,1,0.3,1);
+      padding: 40px;
+      opacity: 0;
+      transform: translateY(56px);
+      transition: box-shadow .3s cubic-bezier(0.16,1,0.3,1),
+                  border-color .3s;
     }
 
-    .card:hover {
-      box-shadow: 0 2px 16px rgba(0,0,0,0.055);
-      transform: translateY(-1px);
+    .work-card:hover {
+      box-shadow: 0 2px 20px rgba(0,0,0,0.055);
+      border-color: rgba(17,17,17,0.12);
     }
 
-    /* Saps — main card spans full height */
-    .card-saps {
+    .card-main {
       grid-row: 1 / 3;
       display: flex;
       flex-direction: column;
     }
 
-    /* Coming soon cards */
     .card-soon {
       border-style: dashed;
-      border-color: var(--border);
       display: flex;
       align-items: center;
       justify-content: center;
       min-height: 160px;
-      opacity: .5;
+      opacity: 0;
     }
 
-    .card-soon:hover {
-      opacity: .65;
-      box-shadow: none;
-      transform: none;
-    }
-
-    .soon-label {
-      font-size: .65rem;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: var(--muted);
-      text-align: center;
-    }
+    .card-soon:hover { box-shadow: none; }
 
     .soon-plus {
       width: 32px; height: 32px;
@@ -374,12 +397,19 @@
       align-items: center;
       justify-content: center;
       color: var(--muted);
-      font-size: 1rem;
-      font-weight: 300;
       margin: 0 auto 12px;
+      font-weight: 300;
     }
 
-    /* App card internals */
+    .soon-label {
+      font-size: .65rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: center;
+      line-height: 1.6;
+    }
+
     .app-head {
       display: flex;
       align-items: flex-start;
@@ -389,18 +419,14 @@
 
     .app-icon {
       width: 56px; height: 56px;
-      background: var(--canvas);
-      border: 1px solid var(--border);
+      background: #3D2510;
       border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--ink);
     }
 
-    .app-icon svg {
-      width: 30px; height: 30px;
-    }
+    .app-icon svg { width: 30px; height: 30px; }
 
     .live-badge {
       font-size: .6rem;
@@ -410,7 +436,6 @@
       background: #EDF3EC;
       padding: 4px 10px;
       border-radius: 100px;
-      font-weight: 400;
     }
 
     .app-name {
@@ -420,7 +445,6 @@
       letter-spacing: -.025em;
       line-height: 1;
       margin-bottom: 14px;
-      color: var(--ink);
     }
 
     .app-desc {
@@ -449,7 +473,6 @@
       border-radius: 100px;
     }
 
-    /* CTA button */
     .btn {
       display: inline-flex;
       align-items: center;
@@ -462,12 +485,11 @@
       letter-spacing: .06em;
       padding: 10px 10px 10px 18px;
       border-radius: 6px;
-      transition: background .2s, transform .15s;
+      transition: background .2s;
       align-self: flex-start;
     }
 
     .btn:hover { background: var(--ink2); }
-    .btn:active { transform: scale(0.98); }
 
     .btn-icon {
       width: 26px; height: 26px;
@@ -476,66 +498,90 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: background .2s, transform .2s;
     }
 
-    .btn:hover .btn-icon {
-      background: rgba(255,255,255,.2);
-      transform: translate(1px,-1px);
+    .card-legal {
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      gap: 16px;
+      align-items: center;
     }
 
-    /* ── ABOUT ───────────────────────────────────────────── */
-    .about-grid {
+    .card-legal span { font-size: .6rem; letter-spacing: .2em; text-transform: uppercase; color: var(--border); }
+    .card-legal a { font-size: .75rem; color: var(--muted); text-decoration: none; transition: color .2s; }
+    .card-legal a:hover { color: var(--ink); }
+    .card-legal b { color: var(--border); font-weight: 300; }
+
+    /* ── STUDIO ── */
+    .s-studio {
+      padding: 136px 0;
+      background: var(--white);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .studio-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 80px;
       align-items: start;
     }
 
-    .about-title {
+    .studio-title {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 3.5vw, 3.2rem);
+      font-size: clamp(2rem, 3.4vw, 3.2rem);
       font-weight: 700;
-      line-height: 1.1;
+      line-height: 1.08;
       letter-spacing: -.025em;
-      color: var(--ink);
     }
 
-    .about-title .outline {
+    .s-line-wrap { overflow: hidden; display: block; }
+
+    .s-line {
+      display: block;
+      transform: translateY(110%);
+      opacity: 0;
+    }
+
+    .s-line--ghost {
       color: transparent;
       -webkit-text-stroke: 1px rgba(17,17,17,.2);
       font-style: italic;
       font-weight: 400;
     }
 
-    .about-body p {
+    .studio-body p {
       font-size: .9rem;
-      line-height: 1.8;
+      line-height: 1.85;
       color: var(--muted);
-      margin-bottom: 16px;
+      margin-bottom: 20px;
+      opacity: 0;
+      transform: translateY(18px);
     }
 
-    .about-body strong {
-      color: var(--ink2);
-      font-weight: 400;
-    }
+    .studio-body strong { color: var(--ink2); font-weight: 400; }
 
-    /* ── CONTACT ─────────────────────────────────────────── */
-    .contact {
-      padding: 80px 0 100px;
+    /* ── CONTACT ── */
+    .s-contact {
+      padding: 120px 0 140px;
       text-align: center;
-      position: relative;
-      z-index: 1;
-      border-top: 1px solid var(--border);
+      overflow: hidden;
     }
 
-    .contact-hint {
+    .contact-kicker {
       font-size: .62rem;
       letter-spacing: .28em;
       text-transform: uppercase;
       color: var(--muted);
-      margin-bottom: 28px;
+      margin-bottom: 32px;
+      opacity: 0;
+      transform: translateY(8px);
     }
+
+    .contact-email-clip { overflow: hidden; display: inline-block; }
 
     .contact-email {
       font-family: 'Playfair Display', serif;
@@ -544,128 +590,87 @@
       letter-spacing: -.02em;
       color: var(--ink);
       text-decoration: none;
-      position: relative;
       display: inline-block;
-      transition: color .3s;
+      transform: translateY(105%);
+      position: relative;
     }
 
     .contact-email::after {
       content: '';
       position: absolute;
-      bottom: -3px; left: 0;
-      width: 0%; height: 1px;
+      bottom: -2px; left: 0;
+      width: 0%;
+      height: 1px;
       background: var(--ink);
-      transition: width .4s cubic-bezier(0.16,1,0.3,1);
+      transition: width .5s cubic-bezier(0.16,1,0.3,1);
     }
 
     .contact-email:hover::after { width: 100%; }
 
-    /* ── FOOTER ──────────────────────────────────────────── */
+    /* ── FOOTER ── */
     footer {
       border-top: 1px solid var(--border);
-      padding: 22px 40px;
+      padding: 22px 48px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       font-size: .68rem;
       color: var(--muted);
       letter-spacing: .04em;
-      position: relative;
-      z-index: 1;
-      max-width: 100%;
     }
 
     footer a { color: var(--muted); text-decoration: none; transition: color .2s; }
     footer a:hover { color: var(--ink); }
     .footer-links { display: flex; gap: 24px; }
 
-    /* ── REVEAL ──────────────────────────────────────────── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(14px);
-      transition: opacity .8s cubic-bezier(0.16,1,0.3,1),
-                  transform .8s cubic-bezier(0.16,1,0.3,1);
-    }
-
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-    .delay-1 { transition-delay: .08s; }
-    .delay-2 { transition-delay: .16s; }
-    .delay-3 { transition-delay: .24s; }
-
-    @keyframes up {
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ── THREE.JS HERO VISUAL ────────────────────────────── */
-    .hero-visual {
-      position: absolute;
-      right: 0;
-      top: 0;
-      bottom: 0;
-      width: 48%;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    #hero-canvas {
-      display: block;
-      background: transparent;
-    }
-
-    .hero-main {
-      position: relative;
-      z-index: 1;
-    }
-
-
-    /* ── RESPONSIVE ──────────────────────────────────────── */
+    /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
-      nav { top: 14px; padding: 8px 6px 8px 14px; }
-      .nav-logo { margin-right: 12px; font-size: .75rem; }
-      .nav-links a { padding: 6px 9px; font-size: .68rem; }
-
-      .hero-main { padding: 0 20px; }
-      .hero-footer { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .hero-content { padding: 100px 20px 60px; }
+      .hero-line { font-size: clamp(3.5rem, 16vw, 7rem); }
+      #hero-canvas { display: none; }
+      .hero-foot { flex-direction: column; align-items: flex-start; gap: 12px; }
       .scroll-hint { display: none; }
-      .hero-visual { display: none; }
 
-      .bento { grid-template-columns: 1fr; grid-template-rows: auto; }
-      .card-saps { grid-row: auto; }
-      .card { padding: 24px; }
+      .manifesto-inner { padding: 80px 24px; }
+      .manifesto-text { font-size: clamp(1.5rem, 5.5vw, 2.2rem); }
 
-      .about-grid { grid-template-columns: 1fr; gap: 36px; }
-
-      .section { padding: 64px 0; }
       .wrap { padding: 0 20px; }
+      .s-work { padding: 80px 0; }
+      .work-grid { grid-template-columns: 1fr; }
+      .card-main { grid-row: auto; }
+      .work-card { padding: 24px; }
+
+      .s-studio { padding: 80px 0; }
+      .studio-grid { grid-template-columns: 1fr; gap: 40px; }
+
+      .s-contact { padding: 80px 0 100px; }
       footer { padding: 20px; flex-direction: column; gap: 14px; }
     }
   </style>
 </head>
 <body>
 
-<!-- ── NAV ──────────────────────────────────────────────────── -->
-<nav>
+<!-- NAV -->
+<nav id="main-nav">
   <span class="nav-logo">APPAS</span>
   <div class="nav-links">
-    <a href="#apps">Apps</a>
+    <a href="#work">Work</a>
     <a href="#studio">Studio</a>
     <a href="#contact" class="nav-cta">Contact</a>
   </div>
 </nav>
 
-<!-- ── HERO ─────────────────────────────────────────────────── -->
-<div class="hero">
-  <div class="hero-visual">
-    <canvas id="hero-canvas"></canvas>
-  </div>
-  <div class="hero-main">
-    <div class="eyebrow">Independent Mobile Developer</div>
+<!-- HERO -->
+<section class="s-hero" id="hero">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Independent Mobile Developer</div>
     <h1 class="hero-title">
-      <span class="t1">APPAS</span>
-      <span class="t2">Studio</span>
-      <span class="t3">Games</span>
+      <span class="line-wrap"><span class="hero-line">APPAS</span></span>
+      <span class="line-wrap"><span class="hero-line hero-line--ghost">Studio</span></span>
+      <span class="line-wrap"><span class="hero-line">Games</span></span>
     </h1>
-    <div class="hero-footer">
+    <div class="hero-foot">
       <p class="hero-desc">
         We build <strong>focused, beautiful mobile apps</strong> —
         designed without dark patterns, built to respect your attention.
@@ -676,9 +681,18 @@
       </div>
     </div>
   </div>
-</div>
+</section>
 
-<!-- ── MARQUEE ───────────────────────────────────────────────── -->
+<!-- MANIFESTO -->
+<section class="s-manifesto" id="manifesto">
+  <div class="manifesto-inner">
+    <div class="manifesto-kicker">Our belief</div>
+    <p class="manifesto-text">We build apps that earn your attention — focused, honest, and free of dark patterns. Every product we ship is built with intention.</p>
+    <p class="manifesto-sub">— APPAS Studio Games</p>
+  </div>
+</section>
+
+<!-- MARQUEE -->
 <div class="marquee-strip">
   <div class="marquee-track">
     <div class="m-item">Mobile Development<div class="m-dot"></div></div>
@@ -700,29 +714,25 @@
   </div>
 </div>
 
-<!-- ── APPS ─────────────────────────────────────────────────── -->
-<div class="section" id="apps">
+<!-- WORK -->
+<section class="s-work" id="work">
   <div class="wrap">
-    <div class="section-label reveal">Apps</div>
-    <div class="bento">
+    <div class="section-label">Work</div>
+    <div class="work-grid">
 
-      <!-- SAPS — main card -->
-      <div class="card card-saps reveal delay-1">
+      <div class="work-card card-main">
         <div class="app-head">
-          <div class="app-icon" style="background:#3D2510 !important;border-color:#3D2510 !important;">
-            <!-- Exact Ionicons planet-outline glyph, mirrored on X -->
+          <div class="app-icon">
             <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
               <g transform="translate(50,50) scale(-0.1953125,0.1953125) translate(-256,-320)">
-                <path d="M240.0 145.0L240.0 145.0Q245.0 144.0 261.5 144.5Q278.0 145.0 284.0 146.0L284.0 146.0Q342.0 156.0 382.5 198.0Q423.0 240.0 431.0 298.0L431.0 298.0Q432.0 309.0 432.0 326.0L432.0 326.0L431.0 342.0L442.0 351.0Q539.0 435.0 502.0 472.0L502.0 472.0Q491.0 482.0 468.0 484.0L468.0 484.0Q437.0 485.0 380.0 466.0L380.0 466.0Q364.0 461.0 363.0 461.0Q362.0 461.0 354.0 466.0L354.0 466.0Q311.0 495.0 259.0 496.0Q207.0 497.0 163.0 469.0L163.0 469.0Q128.0 448.0 107.0 413.0L107.0 413.0Q87.0 381.0 81.0 343.0L81.0 343.0Q80.0 332.0 80.0 315.0L80.0 315.0L81.0 298.0L76.0 294.0Q17.0 244.0 3.0 208.0L3.0 208.0Q1.0 201.0 1.0 192.0L1.0 192.0Q0.0 178.0 9.0 169.0L9.0 169.0Q17.0 161.0 30.0 158.0L30.0 158.0Q35.0 156.0 50.0 156.5Q65.0 157.0 73.0 158.0L73.0 158.0Q106.0 164.0 140.0 177.0L140.0 177.0L150.0 180.0L154.0 177.0Q189.0 151.0 240.0 145.0M276.0 178.0L276.0 178.0Q268.0 177.0 261.0 176.0L261.0 176.0Q219.0 175.0 182.5 196.5Q146.0 218.0 127.0 256.0L127.0 256.0Q116.0 278.0 117.0 284.0L117.0 284.0Q117.0 286.0 127.0 293.0L127.0 293.0Q193.0 343.0 280.0 388.0L280.0 388.0Q351.0 425.0 356.5 423.0Q362.0 421.0 375.0 401.0L375.0 401.0Q400.0 364.0 400.0 320.0Q400.0 276.0 375.0 239.0L375.0 239.0Q359.0 215.0 332.0 198.0Q305.0 181.0 276.0 178.0M67.0 190.0L67.0 190.0Q44.0 187.0 34.0 190.0L34.0 190.0Q24.0 193.0 54.0 228.0L54.0 228.0Q69.0 246.0 85.0 259.0L85.0 259.0L89.0 263.0L92.0 257.0Q102.0 231.0 119.0 210.0L119.0 210.0Q123.0 205.0 122.5 204.5Q122.0 204.0 111.0 201.0L111.0 201.0Q87.0 193.0 67.0 190.0M126.0 332.0L126.0 332.0Q113.0 323.0 113.0 323.0L113.0 323.0Q113.0 324.0 113.0 326.5Q113.0 329.0 113.0 333.5Q113.0 338.0 114.0 342.0L114.0 342.0Q123.0 400.0 171.0 436.0L171.0 436.0Q199.0 457.0 236.0 463.0L236.0 463.0Q243.0 464.0 256.0 464.0Q269.0 464.0 276.0 463.0L276.0 463.0Q300.0 459.0 320.0 449.0L320.0 449.0L326.0 446.0L315.0 441.0Q217.0 398.0 126.0 332.0M438.0 391.0L438.0 391.0Q438.0 391.0 438.0 391.0L438.0 391.0Q427.0 381.0 425.0 379.0L425.0 379.0Q425.0 379.0 423.0 377.0L423.0 377.0L420.0 383.0Q410.0 409.0 393.0 430.0L393.0 430.0Q389.0 435.0 389.0 436.0L389.0 436.0Q392.0 438.0 425.0 446.0L425.0 446.0Q463.0 455.0 476.0 451.0L476.0 451.0Q480.0 450.0 480.0 447.0L480.0 447.0Q480.0 430.0 438.0 391.0" fill="#FDFAF3"/>
+                <path d="M240.0 145.0L240.0 145.0Q245.0 144.0 261.5 144.5Q278.0 145.0 284.0 146.0L284.0 146.0Q342.0 156.0 382.5 198.0Q423.0 240.0 431.0 298.0L431.0 298.0Q432.0 309.0 432.0 326.0L432.0 326.0L431.0 342.0L442.0 351.0Q539.0 435.0 502.0 472.0L502.0 472.0Q491.0 482.0 468.0 484.0L468.0 484.0Q437.0 485.0 380.0 466.0L380.0 466.0Q364.0 461.0 363.0 461.0Q362.0 461.0 354.0 466.0L354.0 466.0Q311.0 495.0 259.0 496.0Q207.0 497.0 163.0 469.0L163.0 469.0Q128.0 448.0 107.0 413.0L107.0 413.0Q87.0 381.0 81.0 343.0L81.0 343.0Q80.0 332.0 80.0 315.0L80.0 315.0L81.0 298.0L76.0 294.0Q17.0 244.0 3.0 208.0L3.0 208.0Q1.0 201.0 1.0 192.0L1.0 192.0Q0.0 178.0 9.0 169.0L9.0 169.0Q17.0 161.0 30.0 158.0L30.0 158.0Q35.0 156.0 50.0 156.5Q65.0 157.0 73.0 158.0L73.0 158.0Q106.0 164.0 140.0 177.0L140.0 177.0L150.0 180.0L154.0 177.0Q189.0 151.0 240.0 145.0M276.0 178.0L276.0 178.0Q268.0 177.0 261.0 176.0L261.0 176.0Q219.0 175.0 182.5 196.5Q146.0 218.0 127.0 256.0L127.0 256.0Q116.0 278.0 117.0 284.0L117.0 284.0Q117.0 286.0 127.0 293.0L127.0 293.0Q193.0 343.0 280.0 388.0L280.0 388.0Q351.0 425.0 356.5 423.0Q362.0 421.0 375.0 401.0L375.0 401.0Q400.0 364.0 400.0 320.0Q400.0 276.0 375.0 239.0L375.0 239.0Q359.0 215.0 332.0 198.0Q305.0 181.0 276.0 178.0M67.0 190.0L67.0 190.0Q44.0 187.0 34.0 190.0L34.0 190.0Q24.0 193.0 54.0 228.0L54.0 228.0Q69.0 246.0 85.0 259.0L85.0 259.0L89.0 263.0L92.0 257.0Q102.0 231.0 119.0 210.0L119.0 210.0Q123.0 205.0 122.5 204.5Q122.0 204.0 111.0 201.0L111.0 201.0Q87.0 193.0 67.0 190.0M126.0 332.0L126.0 332.0Q113.0 323.0 113.0 323.0L113.0 323.0Q113.0 324.0 113.0 326.5Q113.0 329.0 113.0 333.5Q113.0 338.0 114.0 342.0L114.0 342.0Q123.0 400.0 171.0 436.0L171.0 436.0Q199.0 457.0 236.0 463.0L236.0 463.0Q243.0 464.0 256.0 464.0Q269.0 464.0 276.0 463.0L276.0 463.0Q300.0 459.0 320.0 449.0L320.0 449.0L326.0 446.0L315.0 441.0Q217.0 398.0 126.0 332.0M438.0 391.0L438.0 391.0Q427.0 381.0 425.0 379.0L425.0 379.0Q423.0 377.0 423.0 377.0L423.0 377.0L420.0 383.0Q410.0 409.0 393.0 430.0L393.0 430.0Q389.0 435.0 389.0 436.0L389.0 436.0Q392.0 438.0 425.0 446.0L425.0 446.0Q463.0 455.0 476.0 451.0L476.0 451.0Q480.0 450.0 480.0 447.0L480.0 447.0Q480.0 430.0 438.0 391.0" fill="#FDFAF3"/>
               </g>
             </svg>
           </div>
+          <span class="live-badge">Live</span>
         </div>
         <h2 class="app-name">Saps</h2>
-        <p class="app-desc">
-          One curious fact every day — Biology, History, Astronomy, Physics and more.
-          No algorithm, no infinite scroll, no noise. Just daily curiosity, available in 13 languages worldwide.
-        </p>
+        <p class="app-desc">One curious fact every day — Biology, History, Astronomy, Physics and more. No algorithm, no infinite scroll. Just daily curiosity in 13 languages.</p>
         <div class="app-tags">
           <span class="tag">Education</span>
           <span class="tag">13 Languages</span>
@@ -738,69 +748,59 @@
             </svg>
           </span>
         </a>
-
-        <div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--border);display:flex;gap:16px;align-items:center">
-          <span style="font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--border)">Legal</span>
-          <a href="privacy.html" style="font-size:.75rem;color:var(--muted);text-decoration:none;transition:color .2s" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--muted)'">Privacy Policy</a>
-          <span style="color:var(--border);font-size:.75rem">·</span>
-          <a href="terms.html" style="font-size:.75rem;color:var(--muted);text-decoration:none;transition:color .2s" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--muted)'">Terms of Service</a>
+        <div class="card-legal">
+          <span>Legal</span>
+          <a href="privacy.html">Privacy Policy</a>
+          <b>·</b>
+          <a href="terms.html">Terms of Service</a>
         </div>
       </div>
 
-      <!-- COMING 1 -->
-      <div class="card card-soon reveal delay-2">
-        <div class="soon-plus">+</div>
-        <p class="soon-label">Next app<br>in development</p>
+      <div class="work-card card-soon">
+        <div>
+          <div class="soon-plus">+</div>
+          <p class="soon-label">Next app<br>in development</p>
+        </div>
       </div>
 
-      <!-- COMING 2 -->
-      <div class="card card-soon reveal delay-3">
-        <div class="soon-plus">+</div>
-        <p class="soon-label">More coming<br>in 2026</p>
+      <div class="work-card card-soon">
+        <div>
+          <div class="soon-plus">+</div>
+          <p class="soon-label">More coming<br>in 2026</p>
+        </div>
       </div>
 
     </div>
   </div>
-</div>
+</section>
 
-<!-- ── STUDIO ─────────────────────────────────────────────────── -->
-<div class="section" id="studio" style="background:var(--white);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+<!-- STUDIO -->
+<section class="s-studio" id="studio">
   <div class="wrap">
-    <div class="section-label reveal">Studio</div>
-    <div class="about-grid">
-      <h2 class="about-title reveal">
-        Small team.<br>
-        <span class="outline">Obsessive</span><br>
-        attention to detail.
+    <div class="studio-grid">
+      <h2 class="studio-title">
+        <span class="s-line-wrap"><span class="s-line">Small team.</span></span>
+        <span class="s-line-wrap"><span class="s-line s-line--ghost">Obsessive</span></span>
+        <span class="s-line-wrap"><span class="s-line">attention to detail.</span></span>
       </h2>
-      <div class="about-body reveal delay-1">
-        <p>
-          APPAS Studio Games is an <strong>independent mobile studio</strong> based in Spain.
-          We believe the best apps do one thing exceptionally well — and respect the people using them.
-        </p>
-        <p>
-          Every product we ship is <strong>built with intention</strong>: no engagement traps,
-          no bloat, no patterns designed to exploit. Just focused tools that earn their place.
-        </p>
-        <p>
-          We develop natively for iOS and Android, with care for
-          <strong>typography, performance, and accessibility</strong> across 13 languages and counting.
-        </p>
+      <div class="studio-body">
+        <p>APPAS Studio Games is an <strong>independent mobile studio</strong>. We believe the best apps do one thing exceptionally well — and respect the people using them.</p>
+        <p>Every product we ship is <strong>built with intention</strong>: no engagement traps, no bloat, no patterns designed to exploit.</p>
+        <p>We develop for iOS and Android with care for <strong>typography, performance, and accessibility</strong> across multiple languages.</p>
       </div>
     </div>
   </div>
-</div>
+</section>
 
+<!-- CONTACT -->
+<section class="s-contact" id="contact">
+  <p class="contact-kicker">Get in touch</p>
+  <div class="contact-email-clip">
+    <a class="contact-email" href="mailto:appas.studiogames@gmail.com">appas.studiogames@gmail.com</a>
+  </div>
+</section>
 
-<!-- ── CONTACT ───────────────────────────────────────────────── -->
-<div class="contact" id="contact">
-  <p class="contact-hint reveal">Get in touch</p>
-  <a class="contact-email reveal delay-1" href="mailto:appas.studiogames@gmail.com">
-    appas.studiogames@gmail.com
-  </a>
-</div>
-
-<!-- ── FOOTER ────────────────────────────────────────────────── -->
+<!-- FOOTER -->
 <footer>
   <span>© 2026 APPAS Studio Games</span>
   <div class="footer-links">
@@ -810,32 +810,25 @@
   </div>
 </footer>
 
-<script>
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        obs.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.07 });
-
-  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-</script>
-
+<!-- THREE.JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+<!-- GSAP -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
 <script>
+// ── THREE.JS SPHERE ──────────────────────────────────────────
 (function () {
   var canvas = document.getElementById('hero-canvas');
   if (!canvas || typeof THREE === 'undefined') return;
 
-  var scene    = new THREE.Scene();
-  var camera   = new THREE.PerspectiveCamera(50, 1, 0.1, 100);
-  camera.position.z = 3.8;
-
   var renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
   renderer.setClearColor(0x000000, 0);
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+  var scene = new THREE.Scene();
+  var camera = new THREE.PerspectiveCamera(50, 1, 0.1, 100);
+  camera.position.z = 3.8;
 
   function resize() {
     var w = Math.floor(window.innerWidth * 0.48);
@@ -849,49 +842,204 @@
   window.addEventListener('resize', resize);
   setTimeout(resize, 100);
 
-  // — particle sphere —
-  var N = 900;
-  var pos = new Float32Array(N * 3);
+  var N = 900, pos = new Float32Array(N * 3);
   for (var i = 0; i < N; i++) {
-    var phi   = Math.acos(2 * Math.random() - 1);
-    var theta = Math.random() * Math.PI * 2;
-    var r     = 1 + (Math.random() - 0.5) * 0.06;
-    pos[i * 3]     = r * Math.sin(phi) * Math.cos(theta);
-    pos[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
-    pos[i * 3 + 2] = r * Math.cos(phi);
+    var phi = Math.acos(2 * Math.random() - 1), theta = Math.random() * Math.PI * 2;
+    var r = 1 + (Math.random() - 0.5) * 0.06;
+    pos[i*3] = r*Math.sin(phi)*Math.cos(theta);
+    pos[i*3+1] = r*Math.sin(phi)*Math.sin(theta);
+    pos[i*3+2] = r*Math.cos(phi);
   }
   var pGeo = new THREE.BufferGeometry();
   pGeo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
-  var points = new THREE.Points(pGeo, new THREE.PointsMaterial({
-    color: 0x111111, size: 0.014,
-    transparent: true, opacity: 0.3,
-    sizeAttenuation: true,
-  }));
-  scene.add(points);
+  var pMat = new THREE.PointsMaterial({ color: 0x111111, size: 0.014, transparent: true, opacity: 0.28, sizeAttenuation: true });
+  var points = new THREE.Points(pGeo, pMat);
 
-  // — wireframe icosahedron —
   var wire = new THREE.Mesh(
     new THREE.IcosahedronGeometry(1, 3),
-    new THREE.MeshBasicMaterial({ color: 0x111111, wireframe: true, transparent: true, opacity: 0.06 })
+    new THREE.MeshBasicMaterial({ color: 0x111111, wireframe: true, transparent: true, opacity: 0.055 })
   );
-  scene.add(wire);
 
-  // — mouse parallax —
-  var tx = 0, ty = 0;
-  window.addEventListener('mousemove', function (e) {
-    tx = (e.clientX / window.innerWidth  - 0.5) * 2;
-    ty = (e.clientY / window.innerHeight - 0.5) * 2;
+  scene.add(points);
+  scene.add(wire);
+  window._sphere = { points: points, wire: wire, pMat: pMat, wMat: wire.material };
+
+  var mx = 0, my = 0;
+  window.addEventListener('mousemove', function(e) {
+    mx = (e.clientX / window.innerWidth - 0.5) * 2;
+    my = (e.clientY / window.innerHeight - 0.5) * 2;
   });
 
   var t = 0;
-  (function animate() {
-    requestAnimationFrame(animate);
+  (function loop() {
+    requestAnimationFrame(loop);
     t += 0.0025;
-    points.rotation.set(t * 0.38 - ty * 0.09, t + tx * 0.13, 0);
-    wire.rotation.set(t * 0.38 - ty * 0.09, t + tx * 0.13, 0);
+    var rx = t * 0.38 - my * 0.09;
+    var ry = t + mx * 0.13;
+    points.rotation.set(rx, ry, 0);
+    wire.rotation.set(rx, ry, 0);
     renderer.render(scene, camera);
   })();
 })();
+
+// ── GSAP ────────────────────────────────────────────────────
+if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Hero lines clip in on load
+  gsap.to('.hero-line', {
+    y: '0%',
+    duration: 1.2,
+    ease: 'power4.out',
+    stagger: 0.13,
+    delay: 0.15,
+  });
+
+  gsap.to('.hero-eyebrow', {
+    opacity: 1, y: 0,
+    duration: 0.9, ease: 'power3.out', delay: 0.1,
+  });
+
+  gsap.to('.hero-foot', {
+    opacity: 1,
+    duration: 0.9, ease: 'power3.out', delay: 0.7,
+  });
+
+  // Hero content parallax out
+  gsap.to('.hero-content', {
+    y: -200,
+    opacity: 0,
+    ease: 'none',
+    scrollTrigger: {
+      trigger: '.s-hero',
+      start: 'top top',
+      end: 'bottom top',
+      scrub: 1.5,
+    }
+  });
+
+  // Sphere fades as hero scrolls
+  ScrollTrigger.create({
+    trigger: '.s-hero',
+    start: 'top top',
+    end: 'bottom top',
+    scrub: true,
+    onUpdate: function(self) {
+      if (!window._sphere) return;
+      var p = self.progress;
+      var fade = Math.max(0, 1 - p * 1.8);
+      window._sphere.pMat.opacity = 0.28 * fade;
+      window._sphere.wMat.opacity = 0.055 * fade;
+      var s = 1 + p * 0.25;
+      window._sphere.points.scale.set(s, s, s);
+      window._sphere.wire.scale.set(s, s, s);
+    }
+  });
+
+  // Nav goes dark over manifesto
+  ScrollTrigger.create({
+    trigger: '.s-manifesto',
+    start: 'top 8%',
+    end: 'bottom 8%',
+    onEnter:     function() { document.getElementById('main-nav').classList.add('nav--dark'); },
+    onLeave:     function() { document.getElementById('main-nav').classList.remove('nav--dark'); },
+    onEnterBack: function() { document.getElementById('main-nav').classList.add('nav--dark'); },
+    onLeaveBack: function() { document.getElementById('main-nav').classList.remove('nav--dark'); },
+  });
+
+  // Manifesto: word-by-word scrub (pinned)
+  var mEl = document.querySelector('.manifesto-text');
+  if (mEl) {
+    mEl.innerHTML = mEl.textContent.trim()
+      .split(/\s+/)
+      .map(function(w) { return '<span class="m-word">' + w + '</span>'; })
+      .join(' ');
+
+    var words = mEl.querySelectorAll('.m-word');
+    var pinLen = words.length * 52 + 360;
+
+    var tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: '.s-manifesto',
+        start: 'top top',
+        end: '+=' + pinLen,
+        pin: true,
+        scrub: 1,
+        anticipatePin: 1,
+      }
+    });
+
+    words.forEach(function(w, i) {
+      tl.to(w, { opacity: 1, duration: 0.35 }, i * 0.14);
+    });
+
+    tl.to('.manifesto-sub', { opacity: 1, y: 0, duration: 0.4 }, '>0.3');
+  }
+
+  // Work cards entrance
+  gsap.utils.toArray('.work-card').forEach(function(card, i) {
+    gsap.to(card, {
+      y: 0, opacity: 1,
+      duration: 1.0, ease: 'power3.out',
+      scrollTrigger: {
+        trigger: card,
+        start: 'top 88%',
+        toggleActions: 'play none none none',
+      },
+      delay: i * 0.09,
+    });
+  });
+
+  // Studio title clip reveal
+  gsap.utils.toArray('.s-line').forEach(function(line, i) {
+    gsap.to(line, {
+      y: '0%', opacity: 1,
+      duration: 1.1, ease: 'power4.out',
+      delay: i * 0.1,
+      scrollTrigger: {
+        trigger: '.s-studio',
+        start: 'top 78%',
+        toggleActions: 'play none none none',
+      },
+    });
+  });
+
+  gsap.utils.toArray('.studio-body p').forEach(function(p, i) {
+    gsap.to(p, {
+      opacity: 1, y: 0,
+      duration: 0.9, ease: 'power3.out',
+      delay: i * 0.13 + 0.15,
+      scrollTrigger: {
+        trigger: '.studio-body',
+        start: 'top 80%',
+        toggleActions: 'play none none none',
+      },
+    });
+  });
+
+  // Contact reveal
+  gsap.to('.contact-kicker', {
+    opacity: 1, y: 0,
+    duration: 0.8, ease: 'power3.out',
+    scrollTrigger: {
+      trigger: '.s-contact',
+      start: 'top 78%',
+      toggleActions: 'play none none none',
+    },
+  });
+
+  gsap.to('.contact-email', {
+    y: '0%',
+    duration: 1.2, ease: 'power4.out',
+    scrollTrigger: {
+      trigger: '.s-contact',
+      start: 'top 72%',
+      toggleActions: 'play none none none',
+    },
+  });
+
+  ScrollTrigger.refresh();
+}
 </script>
 
 </body>
