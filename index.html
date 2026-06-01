@@ -104,10 +104,8 @@
 
     #hero-canvas {
       position: absolute;
-      left: 52%;
-      right: 0;
       top: 0;
-      height: 100vh;
+      right: 0;
       display: block;
       background: transparent;
       pointer-events: none;
@@ -755,9 +753,9 @@
   camera.position.z = 3.8;
 
   function resize() {
-    var w = canvas.offsetWidth || Math.floor(window.innerWidth * 0.48);
+    var w = Math.floor(window.innerWidth * 0.48);
     var h = window.innerHeight;
-    renderer.setSize(w, h, false);
+    renderer.setSize(w, h);
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
   }
