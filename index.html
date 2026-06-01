@@ -871,11 +871,12 @@
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 </script>
 
-<script src="https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.min.js"></script>
+<script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
 <script>
 (function () {
   var canvas = document.getElementById('hero-canvas');
-  if (!canvas || typeof THREE === 'undefined') return;
+  if (!canvas) { console.error('no canvas'); return; }
+  if (typeof THREE === 'undefined') { console.error('THREE not loaded'); return; }
 
   var renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
   renderer.setClearColor(0x000000, 0);
@@ -886,11 +887,11 @@
   camera.position.z = 4.5;
 
   function resize() {
-    var el = canvas.parentElement;
-    var w = el.offsetWidth  || Math.floor(window.innerWidth  * 0.48);
-    var h = el.offsetHeight || window.innerHeight;
-    if (h < 50) h = window.innerHeight;
+    var w = Math.floor(window.innerWidth * 0.48);
+    var h = window.innerHeight;
     renderer.setSize(w, h);
+    canvas.style.width  = w + 'px';
+    canvas.style.height = h + 'px';
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
   }
@@ -919,7 +920,7 @@
   }
 
   function lm(op) {
-    return new THREE.LineBasicMaterial({ color: 0x111111, transparent: true, opacity: op });
+    return new THREE.LineBasicMaterial({ color: 0x111111, transparent: true, opacity: Math.min(op * 3, 1) });
   }
 
   // ── 1. Wireframe Phone ──────────────────────────────────────
