@@ -52,15 +52,6 @@
       transition: background .5s, border-color .5s;
     }
 
-    nav.nav--dark {
-      background: rgba(13,12,11,0.88);
-      border-color: rgba(255,255,255,0.08);
-    }
-
-    nav.nav--dark .nav-logo { color: rgba(255,255,255,0.85); }
-    nav.nav--dark .nav-links a { color: rgba(255,255,255,0.45); }
-    nav.nav--dark .nav-links a:hover { color: #fff; background: rgba(255,255,255,0.07); }
-    nav.nav--dark .nav-cta { background: rgba(255,255,255,0.95) !important; color: var(--ink) !important; }
 
     .nav-logo {
       font-family: 'Playfair Display', serif;
@@ -113,10 +104,7 @@
 
     #hero-canvas {
       position: absolute;
-      right: 0;
-      top: 0;
-      width: 48%;
-      height: 100%;
+      inset: 0 0 0 52%;
       display: block;
       background: transparent;
       pointer-events: none;
@@ -224,64 +212,6 @@
       50%      { opacity: .25; }
     }
 
-    /* ── MANIFESTO ── */
-    .s-manifesto {
-      background: var(--dark);
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .s-manifesto::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(255,255,255,0.02) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .manifesto-inner {
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 120px 48px;
-      text-align: center;
-    }
-
-    .manifesto-kicker {
-      font-size: .6rem;
-      letter-spacing: .3em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,.18);
-      margin-bottom: 64px;
-    }
-
-    .manifesto-text {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.9rem, 3.8vw, 3.6rem);
-      font-weight: 700;
-      line-height: 1.22;
-      letter-spacing: -.02em;
-      color: var(--white);
-      line-height: 1.35;
-    }
-
-    .m-word {
-      opacity: 0.07;
-      display: inline;
-    }
-
-    .manifesto-sub {
-      margin-top: 64px;
-      font-size: .68rem;
-      letter-spacing: .22em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,.18);
-      opacity: 0;
-      transform: translateY(12px);
-    }
 
     /* ── MARQUEE ── */
     .marquee-strip {
@@ -683,15 +613,6 @@
   </div>
 </section>
 
-<!-- MANIFESTO -->
-<section class="s-manifesto" id="manifesto">
-  <div class="manifesto-inner">
-    <div class="manifesto-kicker">Our belief</div>
-    <p class="manifesto-text">We build apps that earn your attention — focused, honest, and free of dark patterns. Every product we ship is built with intention.</p>
-    <p class="manifesto-sub">— APPAS Studio Games</p>
-  </div>
-</section>
-
 <!-- MARQUEE -->
 <div class="marquee-strip">
   <div class="marquee-track">
@@ -831,11 +752,10 @@
   camera.position.z = 3.8;
 
   function resize() {
-    var w = Math.floor(window.innerWidth * 0.48);
-    var h = window.innerHeight;
-    renderer.setSize(w, h);
-    canvas.style.width  = w + 'px';
-    canvas.style.height = h + 'px';
+    var rect = canvas.getBoundingClientRect();
+    var w = Math.round(rect.width)  || Math.floor(window.innerWidth * 0.48);
+    var h = Math.round(rect.height) || window.innerHeight;
+    renderer.setSize(w, h, false);
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
   }
@@ -935,46 +855,6 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
       window._sphere.wire.scale.set(s, s, s);
     }
   });
-
-  // Nav goes dark over manifesto
-  ScrollTrigger.create({
-    trigger: '.s-manifesto',
-    start: 'top 8%',
-    end: 'bottom 8%',
-    onEnter:     function() { document.getElementById('main-nav').classList.add('nav--dark'); },
-    onLeave:     function() { document.getElementById('main-nav').classList.remove('nav--dark'); },
-    onEnterBack: function() { document.getElementById('main-nav').classList.add('nav--dark'); },
-    onLeaveBack: function() { document.getElementById('main-nav').classList.remove('nav--dark'); },
-  });
-
-  // Manifesto: word-by-word scrub (pinned)
-  var mEl = document.querySelector('.manifesto-text');
-  if (mEl) {
-    mEl.innerHTML = mEl.textContent.trim()
-      .split(/\s+/)
-      .map(function(w) { return '<span class="m-word">' + w + '</span>'; })
-      .join(' ');
-
-    var words = mEl.querySelectorAll('.m-word');
-    var pinLen = words.length * 52 + 360;
-
-    var tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: '.s-manifesto',
-        start: 'top top',
-        end: '+=' + pinLen,
-        pin: true,
-        scrub: 1,
-        anticipatePin: 1,
-      }
-    });
-
-    words.forEach(function(w, i) {
-      tl.to(w, { opacity: 1, duration: 0.35 }, i * 0.14);
-    });
-
-    tl.to('.manifesto-sub', { opacity: 1, y: 0, duration: 0.4 }, '>0.3');
-  }
 
   // Work cards entrance
   gsap.utils.toArray('.work-card').forEach(function(card, i) {
