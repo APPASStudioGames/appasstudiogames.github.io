@@ -609,8 +609,6 @@
 
     #hero-canvas {
       display: block;
-      width: 100%;
-      height: 100%;
       background: transparent;
     }
 
@@ -888,9 +886,12 @@
   camera.position.z = 4.5;
 
   function resize() {
-    var rect = canvas.parentElement.getBoundingClientRect();
-    renderer.setSize(rect.width, rect.height, false);
-    camera.aspect = rect.width / rect.height;
+    var el = canvas.parentElement;
+    var w = el.offsetWidth  || Math.floor(window.innerWidth  * 0.48);
+    var h = el.offsetHeight || window.innerHeight;
+    if (h < 50) h = window.innerHeight;
+    renderer.setSize(w, h);
+    camera.aspect = w / h;
     camera.updateProjectionMatrix();
   }
   window.addEventListener('resize', resize);
@@ -1081,10 +1082,10 @@
   document.getElementById('scene-prev').addEventListener('click', function () { goTo(current - 1); });
   document.getElementById('scene-next').addEventListener('click', function () { goTo(current + 1); });
 
-  window.addEventListener('load', function () {
+  setTimeout(function () {
     resize();
     goTo(0);
-  });
+  }, 200);
 })();
 </script>
 
