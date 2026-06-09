@@ -104,7 +104,7 @@
       position: absolute;
       inset: 0;
       display: grid;
-      grid-template-columns: 52fr 48fr;
+      grid-template-columns: 1fr;
     }
 
     .hero-content {
@@ -616,9 +616,6 @@
       </p>
     </div>
   </div>
-  <div class="hero-sphere-wrap">
-    <canvas id="hero-canvas"></canvas>
-  </div>
   </div>
 </section>
 
@@ -679,9 +676,11 @@
         </a>
         <div class="card-legal">
           <span>Legal</span>
-          <a href="privacy.html">Privacy Policy</a>
+          <a href="saps-privacy.html">Privacy Policy</a>
           <b>·</b>
-          <a href="terms.html">Terms of Service</a>
+          <a href="saps-terms.html">Terms of Service</a>
+          <b>·</b>
+          <a href="saps-data-deletion.html">Data Deletion</a>
         </div>
       </div>
 
@@ -732,85 +731,15 @@
 <footer>
   <span>© 2026 APPAS Studio Games</span>
   <div class="footer-links">
-    <a href="privacy.html">Privacy Policy</a>
-    <a href="terms.html">Terms of Service</a>
-    <a href="data-deletion.html">Data Deletion</a>
     <a href="mailto:appas.studiogames@gmail.com">Contact</a>
   </div>
 </footer>
 
-<!-- THREE.JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
 <!-- GSAP -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
 <script>
-// ── THREE.JS SPHERE ──────────────────────────────────────────
-(function () {
-  var canvas = document.getElementById('hero-canvas');
-  if (!canvas || typeof THREE === 'undefined') return;
-
-  var renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
-  renderer.setClearColor(0x000000, 0);
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-  var scene = new THREE.Scene();
-  var camera = new THREE.PerspectiveCamera(50, 1, 0.1, 100);
-  camera.position.z = 3.8;
-
-  function resize() {
-    var wrap = canvas.parentElement;
-    var w = wrap.offsetWidth  || Math.floor(window.innerWidth * 0.48);
-    var h = wrap.offsetHeight || window.innerHeight;
-    if (h < 50) h = window.innerHeight;
-    renderer.setSize(w, h, false);
-    camera.aspect = w / h;
-    camera.updateProjectionMatrix();
-  }
-  window.addEventListener('resize', resize);
-  setTimeout(resize, 100);
-
-  var N = 900, pos = new Float32Array(N * 3);
-  for (var i = 0; i < N; i++) {
-    var phi = Math.acos(2 * Math.random() - 1), theta = Math.random() * Math.PI * 2;
-    var r = 1 + (Math.random() - 0.5) * 0.06;
-    pos[i*3] = r*Math.sin(phi)*Math.cos(theta);
-    pos[i*3+1] = r*Math.sin(phi)*Math.sin(theta);
-    pos[i*3+2] = r*Math.cos(phi);
-  }
-  var pGeo = new THREE.BufferGeometry();
-  pGeo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
-  var pMat = new THREE.PointsMaterial({ color: 0x111111, size: 0.014, transparent: true, opacity: 0.28, sizeAttenuation: true });
-  var points = new THREE.Points(pGeo, pMat);
-
-  var wire = new THREE.Mesh(
-    new THREE.IcosahedronGeometry(1, 3),
-    new THREE.MeshBasicMaterial({ color: 0x111111, wireframe: true, transparent: true, opacity: 0.055 })
-  );
-
-  scene.add(points);
-  scene.add(wire);
-  window._sphere = { points: points, wire: wire, pMat: pMat, wMat: wire.material };
-
-  var mx = 0, my = 0;
-  window.addEventListener('mousemove', function(e) {
-    mx = (e.clientX / window.innerWidth - 0.5) * 2;
-    my = (e.clientY / window.innerHeight - 0.5) * 2;
-  });
-
-  var t = 0;
-  (function loop() {
-    requestAnimationFrame(loop);
-    t += 0.0025;
-    var rx = t * 0.38 - my * 0.09;
-    var ry = t + mx * 0.13;
-    points.rotation.set(rx, ry, 0);
-    wire.rotation.set(rx, ry, 0);
-    renderer.render(scene, camera);
-  })();
-})();
-
 // ── GSAP ────────────────────────────────────────────────────
 if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -844,24 +773,6 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
       start: 'top top',
       end: 'bottom top',
       scrub: 1.5,
-    }
-  });
-
-  // Sphere fades as hero scrolls
-  ScrollTrigger.create({
-    trigger: '.s-hero',
-    start: 'top top',
-    end: 'bottom top',
-    scrub: true,
-    onUpdate: function(self) {
-      if (!window._sphere) return;
-      var p = self.progress;
-      var fade = Math.max(0, 1 - p * 1.8);
-      window._sphere.pMat.opacity = 0.28 * fade;
-      window._sphere.wMat.opacity = 0.055 * fade;
-      var s = 1 + p * 0.25;
-      window._sphere.points.scale.set(s, s, s);
-      window._sphere.wire.scale.set(s, s, s);
     }
   });
 
